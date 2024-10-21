@@ -5,16 +5,19 @@ import { AppService } from './app.service';
 import { LibraryModule } from './library/library.module';
 
 @Module({
-  imports: [SequelizeModule.forRoot({
-    dialect: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'password',
-    database: 'library',
-    autoLoadModels: true,
-    synchronize: true
-  }), LibraryModule],
+  imports: [
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'tvh25082004',
+      database: 'library',
+      autoLoadModels: true,
+      synchronize: true,
+    }),
+    LibraryModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
