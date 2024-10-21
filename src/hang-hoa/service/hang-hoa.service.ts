@@ -11,11 +11,11 @@ export class HangHoaService {
   ) {}
 
   async findAll(): Promise<HangHoa[]> {
-    return this.hangHoaRepository.findAll();
+    return await this.hangHoaRepository.findAll();
   }
 
-  findOne(id: string): Promise<HangHoa> {
-    return this.hangHoaRepository.findOne({
+  async findOne(id: string): Promise<HangHoa> {
+    return await this.hangHoaRepository.findOne({
       where: {
         id,
       },
@@ -23,7 +23,7 @@ export class HangHoaService {
   }
 
   async createHangHoa(HangHoa: HangHoa): Promise<HangHoa> {
-    return this.hangHoaRepository.create(HangHoa);
+    return await this.hangHoaRepository.create(HangHoa);
   }
 
   async searchHangHoa(keyword: string): Promise<HangHoa[]> {

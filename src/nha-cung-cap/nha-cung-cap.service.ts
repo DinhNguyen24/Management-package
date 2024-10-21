@@ -10,11 +10,11 @@ export class NhaCungCapService {
   ) {}
 
   async findAll(): Promise<NhaCungCap[]> {
-    return this.NhaCungCapModel.findAll();
+    return await this.NhaCungCapModel.findAll();
   }
 
-  findOne(id: string): Promise<NhaCungCap> {
-    return this.NhaCungCapModel.findOne({
+  async findOne(id: string): Promise<NhaCungCap> {
+    return await this.NhaCungCapModel.findOne({
       where: {
         id,
       },
@@ -22,6 +22,6 @@ export class NhaCungCapService {
   }
 
   async createNhaCungCap(NhaCungCap: NhaCungCap): Promise<NhaCungCap> {
-    return this.NhaCungCapModel.create(NhaCungCap);
+    return await this.NhaCungCapModel.create(NhaCungCap);
   }
 }
