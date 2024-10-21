@@ -1,20 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { HangHoa } from '../model/hang-hoa.model';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class HangHoaService {
   constructor(
     @InjectModel(HangHoa)
-    private HangHoaModel: typeof HangHoa,
+    private hangHoaRepository: typeof HangHoa,
   ) {}
 
   async findAll(): Promise<HangHoa[]> {
-    return this.HangHoaModel.findAll();
+    return this.hangHoaRepository.findAll();
   }
 
   findOne(id: string): Promise<HangHoa> {
-    return this.HangHoaModel.findOne({
+    return this.hangHoaRepository.findOne({
       where: {
         id,
       },
@@ -22,6 +23,18 @@ export class HangHoaService {
   }
 
   async createHangHoa(HangHoa: HangHoa): Promise<HangHoa> {
-    return this.HangHoaModel.create(HangHoa);
+    return this.hangHoaRepository.create(HangHoa);
+  }
+
+  async searchHangHoa(keyword: string): Promise<HangHoa[]> {
+    return await this.hangHoaRepository.findAll({
+      where: {
+        ten: { [Op.iLike]: `%${keyword}%` },
+      },
+    });
+  }
+
+  async findHangHoaById(id: string): Promise<HangHoa> {
+    return await this.hangHoaRepository.findByPk(id);
   }
 }

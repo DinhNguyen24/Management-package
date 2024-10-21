@@ -31,4 +31,10 @@ export class HangHoa extends Model {
     allowNull: true,
   })
   description: string;
+
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  soLuong: number;
+
+  @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
+  giaNhap: number;
 }
