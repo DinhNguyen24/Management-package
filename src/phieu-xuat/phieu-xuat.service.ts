@@ -11,4 +11,16 @@ export class PhieuXuatService {
   async createDaiLy(createPhieuXuatDto: PhieuXuat): Promise<PhieuXuat> {
     return await this.phieuXuatRepository.create(createPhieuXuatDto);
   }
+
+  async findAll(): Promise<PhieuXuat[]> {
+    return await this.phieuXuatRepository.findAll();
+  }
+
+  async findOne(id: string): Promise<PhieuXuat> {
+    return await this.phieuXuatRepository.findOne({
+      where: {
+        id,
+      },
+    });
+  }
 }
