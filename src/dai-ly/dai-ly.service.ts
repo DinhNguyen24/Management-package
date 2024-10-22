@@ -29,24 +29,19 @@ export class DaiLyService {
     }
   }
 
-  // async addDaiLy(daiLyData: {
-  //   ma: string;
-  //   ten: string;
-  //   diaChi: string;
-  //   soDienThoai: string;
-  // }) {
-  //   try {
-  //     const newDaiLy = await DaiLy.create(daiLyData);
-  //     return {
-  //       success: true,
-  //       message: 'Thêm đại lý thành công!',
-  //       daiLy: newDaiLy,
-  //     };
-  //   } catch (error) {
-  //     return {
-  //       success: false,
-  //       message: 'Lỗi khi thêm đại lý: ' + error.message,
-  //     };
-  //   }
-  // }
+  async addDaiLy(dto: DaiLy) {
+    try {
+      const newDaiLy = await DaiLy.create(dto);
+      return {
+        success: true,
+        message: 'Thêm đại lý thành công!',
+        daiLy: newDaiLy,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: 'Lỗi khi thêm đại lý: ' + error.message,
+      };
+    }
+  }
 }
