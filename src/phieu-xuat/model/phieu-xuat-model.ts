@@ -3,9 +3,11 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
+import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
 import { Entity } from 'src/common/constants';
 import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
 
@@ -39,4 +41,7 @@ export class PhieuXuat extends Model<PhieuXuat> {
     allowNull: false,
   })
   totalAmount: number;
+
+  @HasMany(() => BillXuat)
+  billXuatList: BillXuat[];
 }

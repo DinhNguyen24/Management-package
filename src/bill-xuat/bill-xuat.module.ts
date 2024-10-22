@@ -8,5 +8,6 @@ import { BillXuat } from './model/bill-xuat-model';
   imports: [SequelizeModule.forFeature([BillXuat])],
   controllers: [BillXuatController],
   providers: [BillXuatService],
+  exports: [BillXuatService],
 })
 export class BillXuatModule {}

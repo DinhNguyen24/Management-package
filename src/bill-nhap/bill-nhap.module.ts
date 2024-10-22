@@ -8,5 +8,6 @@ import { BillNhap } from './model/bill-nhap-model';
   imports: [SequelizeModule.forFeature([BillNhap])],
   controllers: [BillNhapController],
   providers: [BillNhapService],
+  exports: [BillNhapService],
 })
 export class BillNhapModule {}

@@ -8,5 +8,6 @@ import { PhieuNhap } from './model/phieu-nhap-model';
   imports: [SequelizeModule.forFeature([PhieuNhap])],
   controllers: [PhieuNhapController],
   providers: [PhieuNhapService],
+  exports: [PhieuNhapService],
 })
 export class PhieuNhapModule {}

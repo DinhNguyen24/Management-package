@@ -8,5 +8,6 @@ import { HangHoa } from './model/hang-hoa.model';
   imports: [SequelizeModule.forFeature([HangHoa])],
   providers: [HangHoaService],
   controllers: [HangHoaController],
+  exports: [HangHoaService],
 })
 export class HangHoaModule {}

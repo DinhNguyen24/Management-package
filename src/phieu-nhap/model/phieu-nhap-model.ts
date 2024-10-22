@@ -4,9 +4,11 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
+import { BillNhap } from 'src/bill-nhap/model/bill-nhap-model';
 import { Entity } from 'src/common/constants';
 import { NhaCungCap } from 'src/nha-cung-cap/model/nha-cung-cap.model';
 
@@ -48,4 +50,7 @@ export class PhieuNhap extends Model<PhieuNhap> {
     defaultValue: DataType.NOW,
   })
   updatedAt: Date;
+
+  @HasMany(() => BillNhap)
+  billNhapList: BillNhap[];
 }
