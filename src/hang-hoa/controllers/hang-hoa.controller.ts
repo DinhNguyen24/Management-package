@@ -1,4 +1,3 @@
-// hang-hoa.controller.ts
 import { Controller, Get, Query } from '@nestjs/common';
 import { HangHoaService } from '../service/hang-hoa.service';
 

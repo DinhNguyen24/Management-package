@@ -1,4 +1,3 @@
-// dai-ly.controller.ts
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { DaiLyService } from './dai-ly.service';
 import { DaiLy } from './model/dai-ly-model';

@@ -16,7 +16,7 @@ export class DaiLyService {
       const daiLys = await DaiLy.findAll({
         where: {
           ten: {
-            [Op.like]: `%${keyword}%`, // Sử dụng toán tử LIKE để tìm kiếm
+            [Op.like]: `%${keyword}%`,
           },
         },
       });
