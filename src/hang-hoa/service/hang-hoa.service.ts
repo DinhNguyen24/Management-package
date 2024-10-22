@@ -26,15 +26,25 @@ export class HangHoaService {
     return await this.hangHoaRepository.create(HangHoa);
   }
 
-  async searchHangHoa(keyword: string): Promise<HangHoa[]> {
-    return await this.hangHoaRepository.findAll({
-      where: {
-        ten: { [Op.iLike]: `%${keyword}%` },
-      },
-    });
-  }
-
   async findHangHoaById(id: string): Promise<HangHoa> {
     return await this.hangHoaRepository.findByPk(id);
+  }
+
+  async searchHangHoa(keyword: string) {
+    try {
+      const hangHoaList = await HangHoa.findAll({
+        where: {
+          ten: {
+            [Op.like]: `%${keyword}%`, // Sử dụng toán tử LIKE để tìm kiếm
+          },
+        },
+      });
+      return { success: true, hangHoaList };
+    } catch (error) {
+      return {
+        success: false,
+        message: 'Lỗi khi tìm kiếm hàng hóa: ' + error.message,
+      };
+    }
   }
 }
