@@ -13,6 +13,8 @@ export class PhieuXuatService {
   constructor(
     @InjectModel(PhieuXuat)
     private readonly phieuXuatRepository: typeof PhieuXuat,
+    @InjectModel(BillXuat)
+    private readonly billXuatRepository: typeof BillXuat,
     @InjectModel(HangHoa)
     private readonly hangHoaRepository: typeof HangHoa,
   ) {}
@@ -51,7 +53,7 @@ export class PhieuXuatService {
     //   totalPrice: 0,
     // });
 
-    // return billXuat; // return the created BillXuat instance
+    // return billXuat;
   }
 
   async getDanhSachHangHoaXuat(idPhieuXuat: string) {

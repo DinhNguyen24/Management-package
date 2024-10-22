@@ -27,32 +27,31 @@ export class BillXuat extends Model<BillXuat> {
     type: DataType.UUID,
     allowNull: false,
   })
-  idPhieuXuat: string;
+  idPhieuXuat?: string;
 
   @BelongsTo(() => PhieuXuat, {
     targetKey: 'id',
     foreignKey: 'idPhieuXuat',
   })
-  phieuXuat: PhieuXuat;
+  phieuXuat?: PhieuXuat;
 
   @ForeignKey(() => HangHoa)
   @Column({
     type: DataType.UUID,
     allowNull: false,
   })
-  idHangHoa: string;
+  idHangHoa?: string;
 
   @BelongsTo(() => HangHoa, {
     targetKey: 'id',
     foreignKey: 'idHangHoa',
   })
-  hangHoa: HangHoa;
+  hangHoa?: HangHoa;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
   })
-  productName: string;
+  productName?: string;
 
   @Column({
     type: DataType.INTEGER,

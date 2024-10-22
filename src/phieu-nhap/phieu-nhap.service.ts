@@ -8,7 +8,7 @@ export class PhieuNhapService {
     @InjectModel(PhieuNhap) private phieuNhapRepository: typeof PhieuNhap,
   ) {}
 
-  async createDaiLy(createPhieuNhapDto: PhieuNhap): Promise<PhieuNhap> {
+  async createPhieuNhap(createPhieuNhapDto: PhieuNhap): Promise<PhieuNhap> {
     return await this.phieuNhapRepository.create(createPhieuNhapDto);
   }
   async findAll(): Promise<PhieuNhap[]> {

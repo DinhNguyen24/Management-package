@@ -15,4 +15,9 @@ export class DaiLyController {
   async createDaiLy(@Body() createDaiLyDto: DaiLy) {
     return await this.daiLyService.createDaiLy(createDaiLyDto);
   }
+
+  @Post('add')
+  async createphieuNhap(dto: DaiLy): Promise<DaiLy> {
+    return await this.daiLyService.createDaiLy(dto);
+  }
 }
