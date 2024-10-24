@@ -1,11 +1,15 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
 
-@Table({
-  tableName: Entity.DAILY,
-  timestamps: true,
-})
-export class DaiLy extends Model<DaiLy> {
+@Table({ tableName: Entity.DAILY })
+export class DaiLy extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -37,4 +41,10 @@ export class DaiLy extends Model<DaiLy> {
     allowNull: true,
   })
   phone: string;
+
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 }

@@ -1,70 +1,42 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
-import { PhieuXuat } from './model/phieu-xuat-model';
 import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
+import { PhieuXuat } from './model/phieu-xuat-model';
 
 @Injectable()
 export class PhieuXuatService {
   constructor(
     @InjectModel(PhieuXuat)
-    private readonly phieuXuatRepository: typeof PhieuXuat,
+    private readonly phieuXuatModel: typeof PhieuXuat,
     @InjectModel(BillXuat)
-    private readonly billXuatRepository: typeof BillXuat,
-    @InjectModel(HangHoa)
-    private readonly hangHoaRepository: typeof HangHoa,
+    private readonly billXuatModel: typeof BillXuat,
   ) {}
 
-  async addHangHoaToPhieuXuat(
-    idPhieuXuat: string,
-    body: { idHangHoa: string; soLuong: number; donGia: number },
-  ) {
-    const phieuXuat = await this.phieuXuatRepository.findByPk(idPhieuXuat);
-    if (!phieuXuat) {
-      throw new NotFoundException('Phiếu xuất không tồn tại');
-    }
-
-    const hangHoa = await this.hangHoaRepository.findByPk(body.idHangHoa);
-    if (!hangHoa) {
-      throw new NotFoundException('Hàng hóa không tồn tại');
-    }
-
-    if (hangHoa.soLuong < body.soLuong) {
-      throw new BadRequestException('Số lượng yêu cầu vượt quá tồn kho');
-    }
-
-    // Giảm số lượng tồn kho
-    hangHoa.soLuong -= body.soLuong;
-    await hangHoa.save();
-
-    // // Thêm vào BillXuất
-    // const billXuat: Partial<BillXuat> = await this.billXuatRepository.create({
-    //   idPhieuXuat,
-    //   idHangHoa: body.idHangHoa,
-    //   productName: hangHoa.ten,
-    //   quantity: body.soLuong,
-    //   unitPrice: body.donGia,
-    //   phieuXuat: new PhieuXuat(),
-    //   hangHoa: '',
-    //   totalPrice: 0,
-    // });
-
-    // return billXuat;
-  }
-
-  async getDanhSachHangHoaXuat(idPhieuXuat: string) {
-    const phieuXuat = await this.phieuXuatRepository.findByPk(idPhieuXuat, {
-      include: [BillXuat],
+  // Tạo phiếu xuất
+  async createPhieuXuat(daiLyId: string, bills: any[]): Promise<PhieuXuat> {
+    // Tạo phiếu xuất
+    const phieuXuat = await this.phieuXuatModel.create({
+      daiLyId,
+      totalAmount: 0,
     });
 
-    if (!phieuXuat) {
-      throw new NotFoundException('Phiếu xuất không tồn tại');
+    // Tạo danh sách bill xuất cho phiếu xuất
+    let totalAmount = 0;
+    for (const bill of bills) {
+      const createdBill = await this.billXuatModel.create({
+        idPhieuXuat: phieuXuat.id,
+        idHangHoa: bill.idHangHoa,
+        productName: bill.productName,
+        quantity: bill.quantity,
+        unitPrice: bill.unitPrice,
+        totalPrice: bill.quantity * bill.unitPrice,
+      });
+      totalAmount += createdBill.totalPrice;
     }
 
-    return phieuXuat.billXuatList;
+    // Cập nhật tổng số tiền cho phiếu xuất
+    await phieuXuat.update({ totalAmount });
+
+    return phieuXuat;
   }
 }

@@ -1,21 +1,40 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { HangHoaService } from '../service/hang-hoa.service';
-import { HangHoa } from '../model/hang-hoa.model';
 
-@Controller('hang-hoa')
+@Controller('hanghoa')
 export class HangHoaController {
-  constructor(private hangHoaService: HangHoaService) {}
+  constructor(private readonly hangHoaService: HangHoaService) {}
 
-  @Get('search')
-  async searchHangHoa(@Query('keyword') keyword: string) {
-    return await this.hangHoaService.searchHangHoa(keyword);
+  @Post()
+  create(@Body() createHangHoaDto: any) {
+    return this.hangHoaService.createHangHoa(createHangHoaDto);
   }
-  @Post('create-hang-hoa')
-  async create(@Body('hanghoa') hangHoa: HangHoa) {
-    return await this.hangHoaService.createHangHoa(hangHoa);
+
+  @Get()
+  findAll() {
+    return this.hangHoaService.findAll();
   }
-  @Get('xem-tat-ca-hang-hoa')
-  async findHangHoa() {
-    return await this.hangHoaService.findAll();
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.hangHoaService.findOne(id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateHangHoaDto: any) {
+    return this.hangHoaService.updateHangHoa(id, updateHangHoaDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.hangHoaService.deleteHangHoa(id);
   }
 }

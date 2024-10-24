@@ -1,23 +1,25 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param } from '@nestjs/common';
 import { DaiLyService } from './dai-ly.service';
-import { DaiLy } from './model/dai-ly-model';
 
-@Controller('dai-ly')
+@Controller('daily')
 export class DaiLyController {
-  constructor(private daiLyService: DaiLyService) {}
+  constructor(private readonly daiLyService: DaiLyService) {}
 
+  // API tìm kiếm đại lý
   @Get('search')
-  async searchDaiLy(@Query('keyword') keyword: string) {
-    return await this.daiLyService.searchDaiLy(keyword);
+  search(@Query('ten') ten: string) {
+    return this.daiLyService.searchDaiLy(ten);
   }
 
-  @Post('create')
-  async createDaiLy(@Body() createDaiLyDto: DaiLy) {
-    return await this.daiLyService.createDaiLy(createDaiLyDto);
+  // API lấy thông tin chi tiết đại lý
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.daiLyService.findById(id);
   }
 
-  @Post('add')
-  async createphieuNhap(dto: DaiLy): Promise<DaiLy> {
-    return await this.daiLyService.createDaiLy(dto);
+  // API thêm mới đại lý
+  @Post()
+  create(@Body() createDaiLyDto: any) {
+    return this.daiLyService.createDaiLy(createDaiLyDto);
   }
 }

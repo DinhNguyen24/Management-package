@@ -1,11 +1,15 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
 
-@Table({
-  tableName: Entity.NHACUNGCAP,
-  timestamps: true,
-})
-export class NhaCungCap extends Model<NhaCungCap> {
+@Table({ tableName: Entity.NHACUNGCAP })
+export class NhaCungCap extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -37,15 +41,9 @@ export class NhaCungCap extends Model<NhaCungCap> {
   })
   soDienThoai: string;
 
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
+  @CreatedAt
   createdAt: Date;
 
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
+  @UpdatedAt
   updatedAt: Date;
 }

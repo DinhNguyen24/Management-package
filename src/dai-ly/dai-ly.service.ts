@@ -1,47 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { DaiLy } from './model/dai-ly-model';
 import { Op } from 'sequelize';
+import { DaiLy } from './model/dai-ly-model';
 
 @Injectable()
 export class DaiLyService {
-  constructor(@InjectModel(DaiLy) private daiLyRepository: typeof DaiLy) {}
+  constructor(
+    @InjectModel(DaiLy)
+    private readonly daiLyModel: typeof DaiLy,
+  ) {}
 
-  async createDaiLy(createDaiLyDto: DaiLy): Promise<DaiLy> {
-    return await this.daiLyRepository.create(createDaiLyDto);
+  // Tìm đại lý theo tên (có chứa chuỗi tìm kiếm)
+  async searchDaiLy(ten: string): Promise<DaiLy[]> {
+    return this.daiLyModel.findAll({
+      where: { ten: { [Op.like]: `%${ten}%` } },
+    });
   }
 
-  async searchDaiLy(keyword: string) {
-    try {
-      const daiLys = await DaiLy.findAll({
-        where: {
-          ten: {
-            [Op.like]: `%${keyword}%`,
-          },
-        },
-      });
-      return { success: true, daiLys };
-    } catch (error) {
-      return {
-        success: false,
-        message: 'Lỗi khi tìm kiếm đại lý: ' + error.message,
-      };
-    }
+  // Tìm đại lý theo id (để chọn đúng đại lý sau khi tìm kiếm)
+  async findById(id: string): Promise<DaiLy> {
+    return this.daiLyModel.findOne({ where: { id } });
   }
 
-  async addDaiLy(dto: DaiLy) {
-    try {
-      const newDaiLy = await DaiLy.create(dto);
-      return {
-        success: true,
-        message: 'Thêm đại lý thành công!',
-        daiLy: newDaiLy,
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: 'Lỗi khi thêm đại lý: ' + error.message,
-      };
-    }
+  // Thêm mới đại lý
+  async createDaiLy(data: any): Promise<DaiLy> {
+    return this.daiLyModel.create(data);
   }
 }

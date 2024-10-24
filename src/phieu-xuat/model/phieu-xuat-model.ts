@@ -1,21 +1,17 @@
 import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  HasMany,
-  Model,
   Table,
+  Column,
+  Model,
+  ForeignKey,
+  DataType,
+  CreatedAt,
+  UpdatedAt,
 } from 'sequelize-typescript';
-import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
 import { Entity } from 'src/common/constants';
 import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
 
-@Table({
-  tableName: Entity.PHIEUXUAT,
-  timestamps: true,
-})
-export class PhieuXuat extends Model<PhieuXuat> {
+@Table({ tableName: Entity.PHIEUXUAT })
+export class PhieuXuat extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -24,24 +20,15 @@ export class PhieuXuat extends Model<PhieuXuat> {
   id: string;
 
   @ForeignKey(() => DaiLy)
-  @Column({
-    type: DataType.UUID,
-    allowNull: false,
-  })
+  @Column({ type: DataType.UUID, allowNull: false })
   daiLyId: string;
 
-  @BelongsTo(() => DaiLy, {
-    targetKey: 'id',
-    foreignKey: 'daiLyId',
-  })
-  daiLy: DaiLy;
-
-  @Column({
-    type: DataType.DECIMAL,
-    allowNull: false,
-  })
+  @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalAmount: number;
 
-  @HasMany(() => BillXuat)
-  billXuatList: BillXuat[];
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 }
