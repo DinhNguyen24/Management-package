@@ -35,7 +35,7 @@ export class HangHoaService {
       const hangHoaList = await HangHoa.findAll({
         where: {
           ten: {
-            [Op.like]: `%${keyword}%`, // Sử dụng toán tử LIKE để tìm kiếm
+            [Op.like]: `%${keyword}%`,
           },
         },
       });
