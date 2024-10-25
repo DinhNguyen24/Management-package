@@ -51,7 +51,7 @@ export class BillXuat extends Model {
 
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalPrice: number;
-
+  //
   @BeforeSave
   static calculateTotalPrice(instance: BillXuat) {
     instance.totalPrice = instance.quantity * instance.unitPrice;
