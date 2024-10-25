@@ -8,13 +8,17 @@ import {
   Delete,
 } from '@nestjs/common';
 import { HangHoaService } from '../service/hang-hoa.service';
+import { ApiTags } from '@nestjs/swagger';
+import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
+import { HangHoa } from '../model/hang-hoa.model';
 
 @Controller('hanghoa')
+@ApiTags('Hang Hoa')
 export class HangHoaController {
   constructor(private readonly hangHoaService: HangHoaService) {}
 
   @Post()
-  create(@Body() createHangHoaDto: any) {
+  create(@Body() createHangHoaDto: CreateHangHoaDto) {
     return this.hangHoaService.createHangHoa(createHangHoaDto);
   }
 
@@ -36,5 +40,9 @@ export class HangHoaController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.hangHoaService.deleteHangHoa(id);
+  }
+  @Get('find/:ma')
+  async findByMa(@Param('ma') ma: string): Promise<HangHoa> {
+    return this.hangHoaService.findHangHoaByMa(ma);
   }
 }

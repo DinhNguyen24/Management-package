@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { HangHoa } from '../model/hang-hoa.model';
+import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
 
 @Injectable()
 export class HangHoaService {
@@ -9,8 +10,8 @@ export class HangHoaService {
     private readonly hangHoaModel: typeof HangHoa,
   ) {}
 
-  async createHangHoa(data: any): Promise<HangHoa> {
-    return this.hangHoaModel.create(data);
+  async createHangHoa(createHangHoaDto: CreateHangHoaDto): Promise<HangHoa> {
+    return this.hangHoaModel.create(createHangHoaDto);
   }
 
   async findAll(): Promise<HangHoa[]> {
@@ -29,5 +30,17 @@ export class HangHoaService {
   async deleteHangHoa(id: string): Promise<void> {
     const hangHoa = await this.findOne(id);
     await hangHoa.destroy();
+  }
+
+  async findHangHoaByMa(ma: string): Promise<HangHoa> {
+    const hangHoa = await this.hangHoaModel.findOne({
+      where: { ma },
+    });
+
+    if (!hangHoa) {
+      throw new NotFoundException(`Không tìm thấy hàng hóa với mã ${ma}`);
+    }
+
+    return hangHoa;
   }
 }
