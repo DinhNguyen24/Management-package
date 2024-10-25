@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ConfigModule } from '@nestjs/config'; // Thêm import ConfigModule
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HangHoaModule } from './hang-hoa/hang-hoa.module';
@@ -14,13 +15,14 @@ import { BillXuatModule } from './bill-xuat/bill-xuat.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(), // Khởi tạo ConfigModule
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'tvh25082004',
-      database: 'qlykho',
+      host: process.env.SQL_HOST, // Sử dụng biến môi trường
+      port: parseInt(process.env.SQL_PORT, 10), // Chuyển đổi thành số
+      username: process.env.SQL_USER, // Sử dụng biến môi trường
+      password: process.env.SQL_PASSWORD, // Sử dụng biến môi trường
+      database: process.env.SQL_DB, // Sử dụng biến môi trường
       autoLoadModels: true,
       synchronize: true,
     }),
