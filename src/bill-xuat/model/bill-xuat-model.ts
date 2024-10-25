@@ -5,6 +5,7 @@ import {
   ForeignKey,
   DataType,
   BeforeSave,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
 import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
@@ -20,12 +21,24 @@ export class BillXuat extends Model {
   id: string;
 
   @ForeignKey(() => PhieuXuat)
-  @Column({ type: DataType.UUID, allowNull: false })
-  idPhieuXuat: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  maPhieuXuat: string; // Export invoice code
+
+  @BelongsTo(() => PhieuXuat, {
+    targetKey: 'ma',
+    foreignKey: 'maPhieuXuat',
+  })
+  phieuXuatList?: PhieuXuat;
 
   @ForeignKey(() => HangHoa)
-  @Column({ type: DataType.UUID, allowNull: false })
-  idHangHoa: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  maHangHoa: string; // Product code
+
+  @BelongsTo(() => HangHoa, {
+    targetKey: 'ma',
+    foreignKey: 'maHangHoa',
+  })
+  hangHoaList?: HangHoa;
 
   @Column({ type: DataType.STRING, allowNull: false })
   productName: string;

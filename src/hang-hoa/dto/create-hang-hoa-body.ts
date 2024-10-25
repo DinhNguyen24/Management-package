@@ -12,7 +12,7 @@ export class CreateHangHoaDto {
   @IsString()
   ma: string;
 
-  @ApiProperty({ description: 'Item name', example: 'Lapt5op', required: true })
+  @ApiProperty({ description: 'Item name', example: 'Laptop', required: true })
   @IsNotEmpty()
   @IsString()
   ten: string;

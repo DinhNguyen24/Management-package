@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
 import { PhieuXuat } from './model/phieu-xuat-model';
+import { CreateBillXuatDto } from './dto/create-chi-tiet-phieu-xuat.dto';
+import { CreatePhieuXuatDto } from './dto/create-phieu-xuat.body.dto';
 
 @Injectable()
 export class PhieuXuatService {
@@ -13,7 +15,7 @@ export class PhieuXuatService {
   ) {}
 
   // Tạo phiếu xuất
-  async createPhieuXuat(daiLyId: string, bills: any[]): Promise<PhieuXuat> {
+  async create(daiLyId: string, bills: any[]): Promise<PhieuXuat> {
     // Tạo phiếu xuất
     const phieuXuat = await this.phieuXuatModel.create({
       daiLyId,
@@ -36,6 +38,22 @@ export class PhieuXuatService {
 
     // Cập nhật tổng số tiền cho phiếu xuất
     await phieuXuat.update({ totalAmount });
+
+    return phieuXuat;
+  }
+
+  async createPhieuXuat(
+    createPhieuXuatDto: CreatePhieuXuatDto,
+    chiTiet: CreateBillXuatDto[],
+  ): Promise<PhieuXuat> {
+    const phieuXuat = await this.phieuXuatModel.create(createPhieuXuatDto);
+
+    for (const item of chiTiet) {
+      await this.billXuatModel.create({
+        phieuXuatId: phieuXuat.id,
+        ...item,
+      });
+    }
 
     return phieuXuat;
   }

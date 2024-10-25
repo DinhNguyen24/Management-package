@@ -6,8 +6,10 @@ import {
   DataType,
   CreatedAt,
   UpdatedAt,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
+import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
 import { NhaCungCap } from 'src/nha-cung-cap/model/nha-cung-cap.model';
 
 @Table({ tableName: Entity.PHIEUNHAP })
@@ -21,7 +23,23 @@ export class PhieuNhap extends Model {
 
   @ForeignKey(() => NhaCungCap)
   @Column({ type: DataType.UUID, allowNull: false })
-  nhaCungCapId: string;
+  maNhaCungCap: string;
+
+  @BelongsTo(() => NhaCungCap, {
+    targetKey: 'ma',
+    foreignKey: 'maNhaCungCap',
+  })
+  nhaCungCapList?: NhaCungCap;
+
+  @ForeignKey(() => HangHoa)
+  @Column({ type: DataType.STRING, allowNull: false })
+  maHangHoa: string;
+
+  @BelongsTo(() => HangHoa, {
+    targetKey: 'ma',
+    foreignKey: 'maHangHoa',
+  })
+  hangHoaList?: HangHoa;
 
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalAmount: number;
@@ -31,4 +49,10 @@ export class PhieuNhap extends Model {
 
   @UpdatedAt
   updatedAt: Date;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  ma: string;
 }
