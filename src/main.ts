@@ -6,13 +6,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('cats')
+    .setTitle('API Example') // Tiêu đề API
+    .setDescription('The API description') // Mô tả API
+    .setVersion('1.0') // Phiên bản API
+    .addTag('example') // Thêm tag cho Swagger
+    .addBearerAuth() // Thêm cấu hình Bearer Auth cho JWT
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document); // Đặt đường dẫn cho Swagger UI
 
   await app.listen(3000);
 }
