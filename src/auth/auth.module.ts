@@ -4,14 +4,16 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
-import { User } from './model/user.model';
+import { jwtConstants } from './common/constants';
+import { User } from 'src/user/model/user.model';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([User]), // Đảm bảo bạn có mô hình User
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '60m' }, // Thời gian hết hạn cho token
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
     }),
   ],
   providers: [AuthService, JwtStrategy],

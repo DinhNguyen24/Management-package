@@ -3,7 +3,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from './model/user.model';
+import { User } from 'src/user/model/user.model';
 
 @Injectable()
 export class AuthService {
