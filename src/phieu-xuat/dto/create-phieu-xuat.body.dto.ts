@@ -3,18 +3,22 @@ import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsPositive,
+  IsString,
   ValidateNested,
 } from 'class-validator';
-import { CreateBillXuatDto } from './create-chi-tiet-phieu-xuat.dto';
+import { CreateBillXuatDto } from 'src/bill-xuat/dto/create-bill-xuat-body.dto';
 
 export class CreatePhieuXuatDto {
   @ApiProperty({
     description: 'UUID của đại lý',
-    example: 'f23c9d3d-6a5f-4df9-9839-4a4b70bcb1e4',
+    example: 'UUIDMADAILY',
   })
+  @IsString()
+  @IsOptional()
   @IsNotEmpty()
-  daiLyId: string;
+  maDaiLy: string;
 
   @ApiProperty({
     description: 'Tổng giá trị của phiếu xuất',
@@ -22,7 +26,25 @@ export class CreatePhieuXuatDto {
   })
   @IsNumber()
   @IsPositive()
-  tongGiaTri: number;
+  @IsOptional()
+  totalAmount: number;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  @ApiProperty({
+    description: 'UUID của Hang Hoa',
+    example: 'UUIDMAHANGHOA',
+  })
+  maHangHoa: string;
+
+  @IsString()
+  @ApiProperty({
+    description: 'Mã Phiếu Xuất',
+    example: 'UUIDMAPHIEUXUAT',
+    required: true,
+  })
+  ma: string;
 
   @ApiProperty({
     type: [CreateBillXuatDto],
@@ -30,5 +52,5 @@ export class CreatePhieuXuatDto {
   })
   @ValidateNested({ each: true })
   @Type(() => CreateBillXuatDto)
-  chiTiet: CreateBillXuatDto[];
+  billXuatList?: CreateBillXuatDto[];
 }

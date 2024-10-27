@@ -7,9 +7,10 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
+import { CreateDaiLyDto } from '../dto/create-dai-ly.dto';
 
 @Table({ tableName: Entity.DAILY })
-export class DaiLy extends Model {
+export class DaiLy extends Model implements CreateDaiLyDto {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,

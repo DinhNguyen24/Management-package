@@ -7,13 +7,16 @@ import {
   CreatedAt,
   UpdatedAt,
   BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
+import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
 import { Entity } from 'src/common/constants';
 import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
 import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
+import { CreatePhieuXuatDto } from '../dto/create-phieu-xuat.body.dto';
 
 @Table({ tableName: Entity.PHIEUXUAT })
-export class PhieuXuat extends Model {
+export class PhieuXuat extends Model implements CreatePhieuXuatDto {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -55,4 +58,7 @@ export class PhieuXuat extends Model {
     allowNull: false,
   })
   ma: string;
+
+  @HasMany(() => BillXuat)
+  listBillXuat?: BillXuat[];
 }
