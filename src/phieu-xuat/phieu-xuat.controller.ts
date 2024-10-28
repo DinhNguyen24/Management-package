@@ -8,16 +8,15 @@ import { PhieuXuat } from './model/phieu-xuat-model';
 export class PhieuXuatController {
   constructor(private readonly phieuXuatService: PhieuXuatService) {}
 
-  // API tạo phiếu xuất
-  @Post()
-  create(@Body() createPhieuXuatDto: CreatePhieuXuatDto) {
-    return this.phieuXuatService.createPhieuXuat(createPhieuXuatDto);
-  }
-
-  @Post('create-phieu-xuat-from-to-hh')
+  @Post('create')
   async createPhieuXuat(
     @Body() createPhieuXuatDto: CreatePhieuXuatDto,
   ): Promise<PhieuXuat> {
     return this.phieuXuatService.createPhieuXuat(createPhieuXuatDto);
+  }
+
+  @Post('submit')
+  async submitPhieuXuat(@Body('maPhieuXuat') maPhieuXuat: string) {
+    return this.phieuXuatService.submitPhieuXuat(maPhieuXuat);
   }
 }

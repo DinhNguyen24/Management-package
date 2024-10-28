@@ -8,5 +8,6 @@ import { DaiLy } from './model/dai-ly-model';
   imports: [SequelizeModule.forFeature([DaiLy])],
   providers: [DaiLyService],
   controllers: [DaiLyController],
+  exports: [DaiLyService],
 })
 export class DaiLyModule {}
