@@ -41,8 +41,16 @@ export class HangHoaController {
   remove(@Param('id') id: string) {
     return this.hangHoaService.deleteHangHoa(id);
   }
+
   @Get('find/:ma')
   async findByMa(@Param('ma') ma: string): Promise<HangHoa> {
     return this.hangHoaService.findHangHoaByMa(ma);
+  }
+
+  @Get('find/:maDaiLy')
+  async findHangHoaByMaDaiLy(
+    @Param('ma dai ly') maDaiLy: string,
+  ): Promise<HangHoa> {
+    return this.hangHoaService.findHangHoaByMaDaiLy(maDaiLy);
   }
 }

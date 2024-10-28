@@ -21,7 +21,7 @@ export class CreateNhaCungCapDto {
   @ApiProperty({
     description: 'Địa chỉ nhà cung cấp',
     example: '123 Đường ABC, Thành phố XYZ',
-    required: false, // This field is optional
+    required: false,
   })
   @IsString()
   diaChi?: string;
@@ -29,7 +29,7 @@ export class CreateNhaCungCapDto {
   @ApiProperty({
     description: 'Số điện thoại nhà cung cấp',
     example: '0123456789',
-    required: false, // This field is optional
+    required: false,
   })
   @IsString()
   soDienThoai?: string;

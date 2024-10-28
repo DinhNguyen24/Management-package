@@ -12,6 +12,7 @@ import { BillNhapModule } from './bill-nhap/bill-nhap.module';
 import { BillXuatService } from './bill-xuat/bill-xuat.service';
 import { BillXuatController } from './bill-xuat/bill-xuat.controller';
 import { BillXuatModule } from './bill-xuat/bill-xuat.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { BillXuatModule } from './bill-xuat/bill-xuat.module';
     DaiLyModule,
     BillNhapModule,
     BillXuatModule,
+    AuthModule,
   ],
   controllers: [AppController, BillXuatController],
   providers: [AppService, BillXuatService],

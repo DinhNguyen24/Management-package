@@ -43,4 +43,16 @@ export class HangHoaService {
 
     return hangHoa;
   }
+  // tìm kiếm thông tin hàng hóa theo mã đại lý
+  async findHangHoaByMaDaiLy(maDaiLy: string): Promise<HangHoa> {
+    const hangHoa = await this.hangHoaModel.findOne({
+      where: { maDaiLy },
+    });
+
+    if (!hangHoa) {
+      throw new NotFoundException(`Không tìm thấy hàng hóa với mã ${maDaiLy}`);
+    }
+
+    return hangHoa;
+  }
 }

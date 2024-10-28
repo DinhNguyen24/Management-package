@@ -7,9 +7,10 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
+import { CreateNhaCungCapDto } from '../dto/create-nha-cung-cap.dto';
 
 @Table({ tableName: Entity.NHACUNGCAP })
-export class NhaCungCap extends Model {
+export class NhaCungCap extends Model implements CreateNhaCungCapDto {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
