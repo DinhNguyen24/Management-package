@@ -25,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
       password: process.env.SQL_PASSWORD, // Sử dụng biến môi trường
       database: process.env.SQL_DB, // Sử dụng biến môi trường
       autoLoadModels: true,
-      synchronize: true,
+      synchronize: false,
     }),
     HangHoaModule,
     NhaCungCapModule,
