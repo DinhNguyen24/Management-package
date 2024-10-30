@@ -57,14 +57,4 @@ export class HangHoa extends Model implements CreateHangHoaDto {
 
   @UpdatedAt
   updatedAt: Date;
-
-  @ForeignKey(() => DaiLy)
-  @Column({ type: DataType.STRING, allowNull: false })
-  maDaiLy: string;
-
-  @BelongsTo(() => DaiLy, {
-    targetKey: 'ma',
-    foreignKey: 'maDaiLy',
-  })
-  daiLyList?: DaiLy;
 }
