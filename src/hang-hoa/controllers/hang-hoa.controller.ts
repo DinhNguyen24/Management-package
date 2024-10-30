@@ -17,12 +17,12 @@ import { HangHoa } from '../model/hang-hoa.model';
 export class HangHoaController {
   constructor(private readonly hangHoaService: HangHoaService) {}
 
-  @Post()
+  @Post('/create-hang-hoa')
   create(@Body() createHangHoaDto: CreateHangHoaDto) {
     return this.hangHoaService.createHangHoa(createHangHoaDto);
   }
 
-  @Get()
+  @Get('/get-du-lieu')
   findAll() {
     return this.hangHoaService.findAll();
   }
