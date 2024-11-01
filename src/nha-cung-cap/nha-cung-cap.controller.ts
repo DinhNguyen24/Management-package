@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Put, Param, Get } from '@nestjs/common';
+import { Controller, Post, Body, Put, Param, Get, Query } from '@nestjs/common';
 import { NhaCungCapService } from './nha-cung-cap.service';
 import { NhaCungCap } from './model/nha-cung-cap.model';
 import { CreateNhaCungCapDto } from './dto/create-nha-cung-cap.dto';
@@ -11,7 +11,7 @@ export class NhaCungCapController {
   constructor(private readonly nhaCungCapService: NhaCungCapService) {}
 
   // Thêm mới nhà cung cấp
-  @Post('create-nha-cung-cap')
+  @Post()
   async create(
     @Body() createNhaCungCapDto: CreateNhaCungCapDto,
   ): Promise<NhaCungCap> {
@@ -34,14 +34,14 @@ export class NhaCungCapController {
   }
 
   // Lấy danh sách tất cả các nhà cung cấp
-  @Get('get-du-lieu')
+  @Get()
   async findAll(): Promise<NhaCungCap[]> {
     return this.nhaCungCapService.findAll();
   }
 
   // Tìm nhà cung cấp theo mã
-  @Get('search/:ma')
-  async findByMa(@Param('ma') ma: string): Promise<NhaCungCap> {
+  @Get('search/by-ma')
+  async findByMa(@Query('ma') ma: string): Promise<NhaCungCap> {
     return this.nhaCungCapService.findByMa(ma);
   }
 }

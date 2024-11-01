@@ -5,11 +5,8 @@ import {
   DataType,
   CreatedAt,
   UpdatedAt,
-  ForeignKey,
-  BelongsTo,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
 import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
 
 @Table({ tableName: Entity.HANGHOA })

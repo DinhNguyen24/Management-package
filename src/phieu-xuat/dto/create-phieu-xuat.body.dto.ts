@@ -3,9 +3,7 @@ import { Type } from 'class-transformer';
 import {
   Allow,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
-  IsPositive,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -19,22 +17,6 @@ export class CreatePhieuXuatDto {
   @IsOptional()
   @IsNotEmpty()
   maDaiLy: string;
-
-  @ApiProperty({
-    description: 'Tổng giá trị của phiếu xuất',
-  })
-  @IsNumber()
-  @IsPositive()
-  @IsOptional()
-  totalAmount: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  @ApiProperty({
-    description: 'UUID của Hang Hoa',
-  })
-  maHangHoa: string;
 
   @IsString()
   @ApiProperty({
@@ -51,4 +33,17 @@ export class CreatePhieuXuatDto {
   @ValidateNested({ each: true })
   @Type(() => CreateBillXuatDto)
   billXuatList?: CreateBillXuatDto[];
+
+  @IsString()
+  @ApiProperty({
+    description: 'Mã Hàng Hóa',
+    required: true,
+  })
+  maHangHoa: string;
+
+  @IsString()
+  @ApiProperty({
+    required: true,
+  })
+  totalAmount: number;
 }

@@ -11,8 +11,9 @@ export class CreateDaiLyDto {
   id: string;
 
   @ApiProperty({
-    description: 'Mã của đại lý, phải là duy nhất',
+    description: 'Mã của đại lý',
     example: 'DL001',
+    required: true,
   })
   @IsNotEmpty()
   @IsString()
@@ -21,6 +22,7 @@ export class CreateDaiLyDto {
   @ApiProperty({
     description: 'Tên của đại lý',
     example: 'Đại lý ABC',
+    required: true,
   })
   @IsNotEmpty()
   @IsString()
@@ -38,7 +40,7 @@ export class CreateDaiLyDto {
   @ApiProperty({
     description: 'Số điện thoại của đại lý',
     example: '0909123456',
-    required: false,
+    required: true,
   })
   @IsOptional()
   @IsString()

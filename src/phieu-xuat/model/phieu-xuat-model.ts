@@ -32,17 +32,11 @@ export class PhieuXuat extends Model implements CreatePhieuXuatDto {
     targetKey: 'ma',
     foreignKey: 'maDaiLy',
   })
-  daiLyList?: DaiLy;
+  daiLyList?: DaiLy[];
 
   @ForeignKey(() => HangHoa)
   @Column({ type: DataType.STRING, allowNull: false })
   maHangHoa: string;
-
-  @BelongsTo(() => HangHoa, {
-    targetKey: 'ma',
-    foreignKey: 'maHangHoa',
-  })
-  hangHoaList?: HangHoa;
 
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalAmount: number;

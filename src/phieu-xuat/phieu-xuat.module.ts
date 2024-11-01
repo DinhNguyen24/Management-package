@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { PhieuXuatController } from './phieu-xuat.controller';
 import { PhieuXuatService } from './phieu-xuat.service';
 import { PhieuXuat } from './model/phieu-xuat-model';
@@ -14,7 +14,7 @@ import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
     SequelizeModule.forFeature([HangHoa]),
     SequelizeModule.forFeature([BillXuat]),
     HangHoaModule,
-    BillXuatModule,
+    forwardRef(() => BillXuatModule),
   ],
   controllers: [PhieuXuatController],
   providers: [PhieuXuatService],
