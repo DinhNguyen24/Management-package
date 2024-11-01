@@ -11,9 +11,10 @@ import {
 import { Entity } from 'src/common/constants';
 import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
 import { NhaCungCap } from 'src/nha-cung-cap/model/nha-cung-cap.model';
+import { CreatePhieuNhapDto } from '../dto/create-phieu-nhap.dto';
 
 @Table({ tableName: Entity.PHIEUNHAP })
-export class PhieuNhap extends Model {
+export class PhieuNhap extends Model implements CreatePhieuNhapDto {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
