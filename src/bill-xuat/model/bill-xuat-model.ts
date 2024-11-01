@@ -33,7 +33,7 @@ export class BillXuat extends Model implements CreateBillXuatDto {
 
   @ForeignKey(() => HangHoa)
   @Column({ type: DataType.STRING, allowNull: false })
-  maHangHoa: string; // Product code
+  maHangHoa: string;
 
   @BelongsTo(() => HangHoa, {
     targetKey: 'ma',

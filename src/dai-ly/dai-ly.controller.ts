@@ -19,7 +19,7 @@ export class DaiLyController {
   constructor(private readonly daiLyService: DaiLyService) {}
 
   // API: Tìm đại lý theo tên
-  @Get('search')
+  @Get('tim-kiem-dai-ly-theo-tenDl')
   searchDaiLy(@Query('ten') ten: string): Promise<DaiLy[]> {
     return this.daiLyService.searchDaiLy(ten);
   }
@@ -31,13 +31,13 @@ export class DaiLyController {
   }
 
   // API: Lấy danh sách tất cả các đại lý
-  @Get()
+  @Get('get-du-lieu')
   findAllDaiLy(): Promise<DaiLy[]> {
     return this.daiLyService.findAll();
   }
 
   // API: Thêm mới đại lý
-  @Post()
+  @Post('create-dai-ly')
   createDaiLy(@Body() createDaiLyDto: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.createDaiLy(createDaiLyDto);
   }

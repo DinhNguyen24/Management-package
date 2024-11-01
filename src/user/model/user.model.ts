@@ -9,6 +9,4 @@ export class User extends Model<User> {
 
   @Column
   password: string;
-
-  // Bạn có thể thêm các thuộc tính khác nếu cần
 }

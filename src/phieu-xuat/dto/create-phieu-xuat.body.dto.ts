@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+  Allow,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -13,7 +14,6 @@ import { CreateBillXuatDto } from 'src/bill-xuat/dto/create-bill-xuat-body.dto';
 export class CreatePhieuXuatDto {
   @ApiProperty({
     description: 'UUID của đại lý',
-    example: 'UUIDMADAILY',
   })
   @IsString()
   @IsOptional()
@@ -22,7 +22,6 @@ export class CreatePhieuXuatDto {
 
   @ApiProperty({
     description: 'Tổng giá trị của phiếu xuất',
-    example: 2750000,
   })
   @IsNumber()
   @IsPositive()
@@ -34,14 +33,12 @@ export class CreatePhieuXuatDto {
   @IsOptional()
   @ApiProperty({
     description: 'UUID của Hang Hoa',
-    example: 'UUIDMAHANGHOA',
   })
   maHangHoa: string;
 
   @IsString()
   @ApiProperty({
     description: 'Mã Phiếu Xuất',
-    example: 'UUIDMAPHIEUXUAT',
     required: true,
   })
   ma: string;
@@ -50,6 +47,7 @@ export class CreatePhieuXuatDto {
     type: [CreateBillXuatDto],
     description: 'Danh sách các chi tiết hàng hóa xuất',
   })
+  @Allow()
   @ValidateNested({ each: true })
   @Type(() => CreateBillXuatDto)
   billXuatList?: CreateBillXuatDto[];

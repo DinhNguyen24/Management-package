@@ -4,7 +4,7 @@ import { IsNotEmpty, IsOptional, IsNumber, IsString } from 'class-validator';
 export class CreateHangHoaDto {
   @ApiProperty({
     description: 'Unique ide5ntifier for the item',
-    example: 'd290f1ee-65c54-4b01-90e6-d701748f0851',
+    example: 'D@&@$72UYSSSTGP',
     required: false,
   })
   @ApiProperty({ description: 'Item code', example: 'HH5123', required: true })
