@@ -19,12 +19,8 @@ export class CreatePhieuXuatDto {
   totalAmount: number;
 
   @IsOptional()
-  @ValidateNested({ each: true })
-  @Type(() => CreatePhieuXuatDaiLyDto)
   listPhieuXuatDaiLy: CreatePhieuXuatDaiLyDto[];
 
   @IsOptional()
-  @ValidateNested({ each: true })
-  @Type(() => CreatePhieuXuatHangHoaDto)
   listPhieuXuatHangHoa: CreatePhieuXuatHangHoaDto[];
 }
