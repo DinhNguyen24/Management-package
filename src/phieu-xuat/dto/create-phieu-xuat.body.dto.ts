@@ -18,9 +18,15 @@ export class CreatePhieuXuatDto {
   })
   totalAmount: number;
 
-  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    required: true,
+  })
   listPhieuXuatDaiLy: CreatePhieuXuatDaiLyDto[];
 
-  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    required: true,
+  })
   listPhieuXuatHangHoa: CreatePhieuXuatHangHoaDto[];
 }
