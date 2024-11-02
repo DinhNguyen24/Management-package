@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Put, Param, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Put,
+  Param,
+  Get,
+  Query,
+  Delete,
+} from '@nestjs/common';
 import { NhaCungCapService } from './nha-cung-cap.service';
 import { NhaCungCap } from './model/nha-cung-cap.model';
 import { CreateNhaCungCapDto } from './dto/create-nha-cung-cap.dto';
@@ -43,5 +52,11 @@ export class NhaCungCapController {
   @Get('search/by-ma')
   async findByMa(@Query('ma') ma: string): Promise<NhaCungCap> {
     return this.nhaCungCapService.findByMa(ma);
+  }
+
+  // API: Xóa nahf cung caapo  theo id
+  @Delete(':id')
+  deleteNhaCungCap(@Param('id') id: string): Promise<void> {
+    return this.nhaCungCapService.deleteNhaCungCap(id);
   }
 }

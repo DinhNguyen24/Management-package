@@ -1,15 +1,7 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Param,
-  Query,
-  BadRequestException,
-} from '@nestjs/common';
+import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { PhieuXuatService } from './phieu-xuat.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreatePhieuXuatDto } from './dto/create-phieu-xuat.body.dto';
-import { PhieuXuat } from './model/phieu-xuat-model';
 @ApiTags('Phieu Xuat')
 @Controller('phieuxuat')
 export class PhieuXuatController {

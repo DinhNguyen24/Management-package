@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 import { CreateDaiLyDto } from './dto/create-dai-ly.dto';
@@ -51,5 +51,17 @@ export class DaiLyService {
     if (daiLy) {
       await daiLy.destroy();
     }
+  }
+
+  async findDaiLyByMa(ma: string): Promise<DaiLy> {
+    const hangHoa = await this.daiLyModel.findOne({
+      where: { ma },
+    });
+
+    if (!hangHoa) {
+      throw new NotFoundException(`Không tìm thấy đại lý với mã ${ma}`);
+    }
+
+    return hangHoa;
   }
 }
