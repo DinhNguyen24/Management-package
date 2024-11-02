@@ -1,23 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {
-  Allow,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
-import { CreateBillXuatDto } from 'src/bill-xuat/dto/create-bill-xuat-body.dto';
+import { IsOptional, IsString, ValidateNested } from 'class-validator';
+import { CreatePhieuXuatDaiLyDto } from 'src/phieu-xuat-dai-ly/dto/phieu-xuat-dai-ly.dto';
+import { CreatePhieuXuatHangHoaDto } from 'src/phieu-xuat-hang-hoa/dto/create-phieu-xuat-hang-hoa.dto';
 
 export class CreatePhieuXuatDto {
-  @ApiProperty({
-    description: 'UUID của đại lý',
-  })
-  @IsString()
-  @IsOptional()
-  @IsNotEmpty()
-  maDaiLy: string;
-
   @IsString()
   @ApiProperty({
     description: 'Mã Phiếu Xuất',
@@ -25,25 +12,19 @@ export class CreatePhieuXuatDto {
   })
   ma: string;
 
-  @ApiProperty({
-    type: [CreateBillXuatDto],
-    description: 'Danh sách các chi tiết hàng hóa xuất',
-  })
-  @Allow()
-  @ValidateNested({ each: true })
-  @Type(() => CreateBillXuatDto)
-  billXuatList?: CreateBillXuatDto[];
-
-  @IsString()
-  @ApiProperty({
-    description: 'Mã Hàng Hóa',
-    required: true,
-  })
-  maHangHoa: string;
-
   @IsString()
   @ApiProperty({
     required: true,
   })
   totalAmount: number;
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CreatePhieuXuatDaiLyDto)
+  listPhieuXuatDaiLy: CreatePhieuXuatDaiLyDto[];
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CreatePhieuXuatHangHoaDto)
+  listPhieuXuatHangHoa: CreatePhieuXuatHangHoaDto[];
 }

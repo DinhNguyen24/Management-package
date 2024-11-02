@@ -13,6 +13,8 @@ import { BillXuatService } from './bill-xuat/bill-xuat.service';
 import { BillXuatController } from './bill-xuat/bill-xuat.controller';
 import { BillXuatModule } from './bill-xuat/bill-xuat.module';
 import { AuthModule } from './auth/auth.module';
+import { PhieuXuatHangHoaModule } from './phieu-xuat-hang-hoa/phieu-xuat-hang-hoa.module';
+import { PhieuXuatDaiLyModule } from './phieu-xuat-dai-ly/phieu-xuat-dai-ly.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { AuthModule } from './auth/auth.module';
     BillNhapModule,
     BillXuatModule,
     AuthModule,
+    PhieuXuatHangHoaModule,
+    PhieuXuatDaiLyModule,
   ],
   controllers: [AppController, BillXuatController],
   providers: [AppService, BillXuatService],

@@ -6,4 +6,8 @@ export enum Entity {
   BILLXUAT = 'BillXuat',
   DAILY = 'DaiLy',
   NHACUNGCAP = 'NhaCungCap',
+  PHIEUXUATHANGHOA = 'PhieuXuatHangHoa',
+  PHIEUNHAPHANGHOA = 'PhieuNhapHangHoa',
+  PHIEUNHAPDAILY = 'PhieuNhapDaiLy',
+  PHIEUXUATDAILY = 'PhieuXuatDaiLy',
 }
