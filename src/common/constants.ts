@@ -8,6 +8,6 @@ export enum Entity {
   NHACUNGCAP = 'NhaCungCap',
   PHIEUXUATHANGHOA = 'PhieuXuatHangHoa',
   PHIEUNHAPHANGHOA = 'PhieuNhapHangHoa',
-  PHIEUNHAPDAILY = 'PhieuNhapDaiLy',
+  PHIEUNHAPNHACUNGCAP = 'PhieuNhapNhaCungCap',
   PHIEUXUATDAILY = 'PhieuXuatDaiLy',
 }

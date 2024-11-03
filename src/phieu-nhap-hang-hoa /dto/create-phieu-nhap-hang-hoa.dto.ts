@@ -1,10 +1,10 @@
 import { IsOptional, IsString } from 'class-validator';
 import { CreateHangHoaDto } from 'src/hang-hoa/dto/create-hang-hoa-body';
 
-export class CreatePhieuXuatHangHoaDto {
+export class CreatePhieuNhapHangHoaDto {
   @IsString()
   @IsOptional()
-  maPhieuXuat: string;
+  maPhieuNhap: string;
 
   @IsString()
   @IsOptional()

@@ -2,45 +2,25 @@ import {
   Table,
   Column,
   Model,
-  ForeignKey,
   DataType,
   CreatedAt,
   UpdatedAt,
-  BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
-import { NhaCungCap } from 'src/nha-cung-cap/model/nha-cung-cap.model';
-import { CreatePhieuNhapDto } from '../dto/create-phieu-nhap.dto';
+import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-dai-ly /dto/phieu-nhap-nha-cung-cap.dto';
+import { PhieuNhapNhaCungCap } from 'src/phieu-nhap-dai-ly /model/phieu-nhap-nha-cung-cap.model';
+import { CreatePhieuNhapHangHoaDto } from 'src/phieu-nhap-hang-hoa /dto/create-phieu-nhap-hang-hoa.dto';
+import { PhieuNhapHangHoa } from 'src/phieu-nhap-hang-hoa /model/phieu-nhap-hang-hoa.model';
 
 @Table({ tableName: Entity.PHIEUNHAP })
-export class PhieuNhap extends Model implements CreatePhieuNhapDto {
+export class PhieuNhap extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
     primaryKey: true,
   })
   id: string;
-
-  @ForeignKey(() => NhaCungCap)
-  @Column({ type: DataType.UUID, allowNull: false })
-  maNhaCungCap: string;
-
-  @BelongsTo(() => NhaCungCap, {
-    targetKey: 'ma',
-    foreignKey: 'maNhaCungCap',
-  })
-  nhaCungCapList?: NhaCungCap;
-
-  @ForeignKey(() => HangHoa)
-  @Column({ type: DataType.STRING, allowNull: false })
-  maHangHoa: string;
-
-  @BelongsTo(() => HangHoa, {
-    targetKey: 'ma',
-    foreignKey: 'maHangHoa',
-  })
-  hangHoaList?: HangHoa;
 
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalAmount: number;
@@ -56,4 +36,10 @@ export class PhieuNhap extends Model implements CreatePhieuNhapDto {
     allowNull: false,
   })
   ma: string;
+
+  @HasMany(() => PhieuNhapNhaCungCap)
+  listPhieuNhapNhaCungCap: CreatePhieuNhapNhaCungCapDto[];
+
+  @HasMany(() => PhieuNhapHangHoa)
+  listPhieuNhapHangHoa: CreatePhieuNhapHangHoaDto[];
 }

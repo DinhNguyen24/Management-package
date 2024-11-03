@@ -8,8 +8,10 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
+import { CreatePhieuXuatDaiLyDto } from 'src/phieu-xuat-dai-ly/dto/phieu-xuat-dai-ly.dto';
 import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
-import { PhieuXuatHangHoa } from 'src/phieu-xuat-hang-hoa/model/phieu-xuat-hang-huoa.model';
+import { CreatePhieuXuatHangHoaDto } from 'src/phieu-xuat-hang-hoa/dto/create-phieu-xuat-hang-hoa.dto';
+import { PhieuXuatHangHoa } from 'src/phieu-xuat-hang-hoa/model/phieu-xuat-hang-hoa.model';
 
 @Table({ tableName: Entity.PHIEUXUAT })
 export class PhieuXuat extends Model {
@@ -36,8 +38,8 @@ export class PhieuXuat extends Model {
   ma: string;
 
   @HasMany(() => PhieuXuatDaiLy)
-  listPhieuXuatDaiLy?: PhieuXuatDaiLy[];
+  listPhieuXuatDaiLy: CreatePhieuXuatDaiLyDto[];
 
   @HasMany(() => PhieuXuatHangHoa)
-  listPhieuXuatHangHoa?: PhieuXuatHangHoa[];
+  listPhieuXuatHangHoa: CreatePhieuXuatHangHoaDto[];
 }

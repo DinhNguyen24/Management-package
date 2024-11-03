@@ -8,9 +8,10 @@ import {
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
 import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
-import { PhieuNhap } from 'src/phieu-nhap/model/phieu-nhap-model';
 import { PhieuXuat } from 'src/phieu-xuat/model/phieu-xuat-model';
 import { CreatePhieuXuatDaiLyDto } from '../dto/phieu-xuat-dai-ly.dto';
+import { CreateDaiLyDto } from 'src/dai-ly/dto/create-dai-ly.dto';
+import { CreatePhieuXuatDto } from 'src/phieu-xuat/dto/create-phieu-xuat.body.dto';
 
 @Table({ tableName: Entity.PHIEUXUATDAILY })
 export class PhieuXuatDaiLy extends Model implements CreatePhieuXuatDaiLyDto {
@@ -29,7 +30,7 @@ export class PhieuXuatDaiLy extends Model implements CreatePhieuXuatDaiLyDto {
     targetKey: 'ma',
     foreignKey: 'maPhieuXuat',
   })
-  phieuXuatList?: PhieuNhap;
+  phieuXuatList?: CreatePhieuXuatDto;
 
   @ForeignKey(() => DaiLy)
   @Column({ type: DataType.STRING, allowNull: false })
@@ -39,5 +40,5 @@ export class PhieuXuatDaiLy extends Model implements CreatePhieuXuatDaiLyDto {
     targetKey: 'ma',
     foreignKey: 'maDaiLy',
   })
-  daiLyList?: DaiLy;
+  daiLyList?: CreateDaiLyDto;
 }

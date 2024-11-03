@@ -18,15 +18,25 @@ export class CreatePhieuXuatDto {
   })
   totalAmount: number;
 
-  @IsString()
-  @ApiProperty({
-    required: true,
-  })
   listPhieuXuatDaiLy: CreatePhieuXuatDaiLyDto[];
 
-  @IsString()
-  @ApiProperty({
-    required: true,
-  })
   listPhieuXuatHangHoa: CreatePhieuXuatHangHoaDto[];
+
+  @IsString()
+  maDaiLy: string;
+
+  @IsString()
+  maHangHoa: string;
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CreatePhieuXuatDaiLyDto)
+  @ApiProperty({})
+  danhSachDaiLy: CreatePhieuXuatDaiLyDto[];
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CreatePhieuXuatHangHoaDto)
+  @ApiProperty({})
+  danhSachHangHoa: CreatePhieuXuatHangHoaDto[];
 }
