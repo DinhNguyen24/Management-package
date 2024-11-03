@@ -34,7 +34,7 @@ export class PhieuXuatDaiLy extends Model implements CreatePhieuXuatDaiLyDto {
 
   @ForeignKey(() => DaiLy)
   @Column({ type: DataType.STRING, allowNull: false })
-  maDaiLy: string; // Product code
+  maDaiLy: string;
 
   @BelongsTo(() => DaiLy, {
     targetKey: 'ma',
