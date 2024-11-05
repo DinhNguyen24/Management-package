@@ -8,8 +8,8 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-dai-ly /dto/phieu-nhap-nha-cung-cap.dto';
-import { PhieuNhapNhaCungCap } from 'src/phieu-nhap-dai-ly /model/phieu-nhap-nha-cung-cap.model';
+import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-nha-cung-cap/dto/phieu-nhap-nha-cung-cap.dto';
+import { PhieuNhapNhaCungCap } from 'src/phieu-nhap-nha-cung-cap/model/phieu-nhap-nha-cung-cap.model';
 import { CreatePhieuNhapHangHoaDto } from 'src/phieu-nhap-hang-hoa /dto/create-phieu-nhap-hang-hoa.dto';
 import { PhieuNhapHangHoa } from 'src/phieu-nhap-hang-hoa /model/phieu-nhap-hang-hoa.model';
 

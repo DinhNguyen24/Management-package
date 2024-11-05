@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsString, IsOptional, ValidateNested } from 'class-validator';
-import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-dai-ly /dto/phieu-nhap-nha-cung-cap.dto';
+import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-nha-cung-cap/dto/phieu-nhap-nha-cung-cap.dto';
 import { CreatePhieuNhapHangHoaDto } from 'src/phieu-nhap-hang-hoa /dto/create-phieu-nhap-hang-hoa.dto';
 
 export class CreatePhieuNhapDto {
