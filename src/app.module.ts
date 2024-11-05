@@ -16,7 +16,7 @@ import { AuthModule } from './auth/auth.module';
 import { PhieuXuatHangHoaModule } from './phieu-xuat-hang-hoa/phieu-xuat-hang-hoa.module';
 import { PhieuXuatDaiLyModule } from './phieu-xuat-dai-ly/phieu-xuat-dai-ly.module';
 import { PhieuNhapNhaCungCapModule } from './phieu-nhap-nha-cung-cap/phieu-nhap-nha-cung-cap.module';
-import { PhieuNhapHangHoaModule } from './phieu-nhap-hang-hoa /phieu-nhap-hang-hoa.module';
+import { PhieuNhapHangHoaModule } from './phieu-nhap-hang-hoa/phieu-nhap-hang-hoa.module';
 
 @Module({
   imports: [

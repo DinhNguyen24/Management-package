@@ -10,8 +10,8 @@ import {
 import { Entity } from 'src/common/constants';
 import { CreatePhieuNhapNhaCungCapDto } from 'src/phieu-nhap-nha-cung-cap/dto/phieu-nhap-nha-cung-cap.dto';
 import { PhieuNhapNhaCungCap } from 'src/phieu-nhap-nha-cung-cap/model/phieu-nhap-nha-cung-cap.model';
-import { CreatePhieuNhapHangHoaDto } from 'src/phieu-nhap-hang-hoa /dto/create-phieu-nhap-hang-hoa.dto';
-import { PhieuNhapHangHoa } from 'src/phieu-nhap-hang-hoa /model/phieu-nhap-hang-hoa.model';
+import { CreatePhieuNhapHangHoaDto } from 'src/phieu-nhap-hang-hoa/dto/create-phieu-nhap-hang-hoa.dto';
+import { PhieuNhapHangHoa } from 'src/phieu-nhap-hang-hoa/model/phieu-nhap-hang-hoa.model';
 
 @Table({ tableName: Entity.PHIEUNHAP })
 export class PhieuNhap extends Model {
