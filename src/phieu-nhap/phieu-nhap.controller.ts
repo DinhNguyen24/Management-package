@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PhieuNhapService } from './phieu-nhap.service';
 import { PhieuNhap } from './model/phieu-nhap-model';
 import { ApiTags } from '@nestjs/swagger';
-import { CreatePhieuNhapDto } from './dto/create-phieu-nhap.dto';
 @ApiTags('Phieu Nhap')
 @Controller('phieu-nhap')
 export class PhieuNhapController {
@@ -23,8 +22,8 @@ export class PhieuNhapController {
     return await this.phieuNhapService.createPhieuNhap(phieuNhap);
   }
 
-  @Post('create')
-  async create(@Body() dto: CreatePhieuNhapDto) {
-    return this.phieuNhapService.create(dto);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.phieuNhapService.deletePhieuXuat(id);
   }
 }

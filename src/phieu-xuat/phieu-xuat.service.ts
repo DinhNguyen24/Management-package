@@ -74,4 +74,13 @@ export class PhieuXuatService {
   ): Promise<PhieuXuat> {
     return await this.phieuXuatModel.create(createPhieuXuatDto);
   }
+
+  async findAll(): Promise<PhieuXuat[]> {
+    return this.phieuXuatModel.findAll();
+  }
+
+  async deletePhieuXuat(id: string): Promise<void> {
+    const PhieuXuat = await this.phieuXuatModel.findByPk(id);
+    await PhieuXuat.destroy();
+  }
 }

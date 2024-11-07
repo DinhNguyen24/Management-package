@@ -25,4 +25,10 @@ export class CreatePhieuNhapDto {
   @Type(() => CreatePhieuNhapHangHoaDto)
   @ApiProperty({ type: [CreatePhieuNhapHangHoaDto] })
   danhSachHangHoa: CreatePhieuNhapHangHoaDto[];
+
+  @IsString()
+  @ApiProperty({
+    description: 'Số Lượng',
+  })
+  soLuong: number;
 }
