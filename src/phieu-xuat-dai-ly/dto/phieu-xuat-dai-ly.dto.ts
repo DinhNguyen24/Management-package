@@ -4,5 +4,5 @@ import { IsString } from 'class-validator';
 export class CreatePhieuXuatDaiLyDto {
   @IsString()
   @ApiProperty({ description: 'Mã Đại Lý' })
-  ma: string;
+  maDaiLy: string;
 }

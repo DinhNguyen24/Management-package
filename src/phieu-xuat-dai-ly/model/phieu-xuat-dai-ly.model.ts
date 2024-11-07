@@ -13,10 +13,6 @@ import { CreateDaiLyDto } from 'src/dai-ly/dto/create-dai-ly.dto';
 
 @Table({ tableName: Entity.PHIEUXUATDAILY })
 export class PhieuXuatDaiLy extends Model implements CreatePhieuXuatDaiLyDto {
-  ma: string;
-  ten: string;
-  diaChi?: string;
-  phone?: string;
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
