@@ -30,7 +30,10 @@ export class PhieuNhap extends Model {
   })
   ma: string;
 
-  @HasMany(() => PhieuNhapHangHoa)
+  @HasMany(() => PhieuNhapHangHoa, {
+    sourceKey: 'ma',
+    foreignKey: 'maPhieuNhap',
+  })
   listPhieuNhapHangHoa: CreatePhieuNhapHangHoaDto[];
 
   @CreatedAt

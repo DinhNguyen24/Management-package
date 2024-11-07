@@ -29,7 +29,10 @@ export class PhieuXuat extends Model {
   })
   ma: string;
 
-  @HasMany(() => PhieuXuatHangHoa)
+  @HasMany(() => PhieuXuatHangHoa, {
+    sourceKey: 'ma',
+    foreignKey: 'maPhieuXuat',
+  })
   listPhieuXuatHangHoa: PhieuXuatHangHoa[];
 
   @CreatedAt

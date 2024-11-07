@@ -22,7 +22,11 @@ export class PhieuXuatHangHoa extends Model {
   id: string;
 
   @ForeignKey(() => PhieuXuat)
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    unique: true,
+  })
   maPhieuXuat: string;
 
   @BelongsTo(() => PhieuXuat, {

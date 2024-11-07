@@ -7,6 +7,6 @@ export class CreatePhieuXuatHangHoaDto {
   maHangHoa: string;
 
   @IsString()
-  @ApiProperty({ description: 'Mã Phiếu Xuất' })
+  @ApiProperty({ description: 'Mã Phiếu Xuất', required: true })
   maPhieuXuat: string;
 }
