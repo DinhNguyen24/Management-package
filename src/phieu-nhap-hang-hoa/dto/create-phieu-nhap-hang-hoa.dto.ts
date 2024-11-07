@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
-import { CreateHangHoaDto } from 'src/hang-hoa/dto/create-hang-hoa-body';
 
 export class CreatePhieuNhapHangHoaDto {
   @ApiProperty({
@@ -16,7 +15,4 @@ export class CreatePhieuNhapHangHoaDto {
   @IsString()
   @IsOptional()
   maHangHoa: string;
-
-  @IsOptional()
-  hangHoaList?: CreateHangHoaDto;
 }

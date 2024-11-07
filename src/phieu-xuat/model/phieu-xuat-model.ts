@@ -8,7 +8,6 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
 import { PhieuXuatHangHoa } from 'src/phieu-xuat-hang-hoa/model/phieu-xuat-hang-hoa.model';
 
 @Table({ tableName: Entity.PHIEUXUAT })
@@ -23,12 +22,6 @@ export class PhieuXuat extends Model {
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: false })
   totalAmount: number;
 
-  @CreatedAt
-  createdAt: Date;
-
-  @UpdatedAt
-  updatedAt: Date;
-
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -38,4 +31,10 @@ export class PhieuXuat extends Model {
 
   @HasMany(() => PhieuXuatHangHoa)
   listPhieuXuatHangHoa: PhieuXuatHangHoa[];
+
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 }
