@@ -4,10 +4,10 @@ import { IsNotEmpty, IsOptional, IsNumber, IsString } from 'class-validator';
 export class CreateHangHoaDto {
   @ApiProperty({
     description: 'Unique ide5ntifier for the item',
-    example: 'D@&@$72UYSSSTGP',
+    example: 'HTML',
     required: false,
   })
-  @ApiProperty({ description: 'Item code', example: 'HH5123', required: true })
+  @ApiProperty({ description: 'Item code', example: 'HHH', required: true })
   @IsNotEmpty()
   @IsString()
   ma: string;
@@ -19,7 +19,7 @@ export class CreateHangHoaDto {
 
   @ApiProperty({
     description: 'Item description',
-    example: 'High-end ga5ming laptop',
+    example: 'High-end gaming laptop',
     required: false,
   })
   @IsOptional()

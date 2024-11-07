@@ -44,4 +44,7 @@ export class PhieuXuatHangHoa extends Model {
     foreignKey: 'maHangHoa',
   })
   hangHoaList?: CreateHangHoaDto;
+
+  @Column({ type: DataType.STRING, allowNull: false })
+  soLuong: number;
 }
