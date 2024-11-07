@@ -8,11 +8,12 @@ import {
   Delete,
 } from '@nestjs/common';
 import { HangHoaService } from '../service/hang-hoa.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
 import { HangHoa } from '../model/hang-hoa.model';
 
 @Controller('hanghoa')
+@ApiResponse({ status: 200, type: HangHoa })
 @ApiTags('Hang Hoa')
 export class HangHoaController {
   constructor(private readonly hangHoaService: HangHoaService) {}

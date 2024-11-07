@@ -9,4 +9,8 @@ export class CreatePhieuXuatHangHoaDto {
   @IsString()
   @ApiProperty({ description: 'Mã Phiếu Xuất', required: true })
   maPhieuXuat: string;
+
+  @IsString()
+  @ApiProperty({ description: 'Số Lượng', required: true })
+  soLuong?: number;
 }
