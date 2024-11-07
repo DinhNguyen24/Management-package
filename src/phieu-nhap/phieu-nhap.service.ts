@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PhieuNhap } from './model/phieu-nhap-model';
 import { InjectModel } from '@nestjs/sequelize';
+import { CreatePhieuNhapDto } from './dto/create-phieu-nhap.dto';
 
 @Injectable()
 export class PhieuNhapService {
@@ -8,7 +9,9 @@ export class PhieuNhapService {
     @InjectModel(PhieuNhap) private phieuNhapRepository: typeof PhieuNhap,
   ) {}
 
-  async createPhieuNhap(createPhieuNhapDto: PhieuNhap): Promise<PhieuNhap> {
+  async createPhieuNhap(
+    createPhieuNhapDto: CreatePhieuNhapDto,
+  ): Promise<PhieuNhap> {
     return await this.phieuNhapRepository.create(createPhieuNhapDto);
   }
   async findAll(): Promise<PhieuNhap[]> {

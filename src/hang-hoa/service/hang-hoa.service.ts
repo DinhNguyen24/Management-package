@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { HangHoa } from '../model/hang-hoa.model';
 import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
+import { UpdateHangHoaDto } from '../dto/update-hang-hoa-dto';
 
 @Injectable()
 export class HangHoaService {
@@ -22,9 +23,9 @@ export class HangHoaService {
     return this.hangHoaModel.findOne({ where: { id } });
   }
 
-  async updateHangHoa(id: string, data: any): Promise<HangHoa> {
+  async updateHangHoa(id: string, data: UpdateHangHoaDto): Promise<HangHoa> {
     const hangHoa = await this.findOne(id);
-    return hangHoa.update(data);
+    return hangHoa.update(id, data);
   }
 
   async deleteHangHoa(id: string): Promise<void> {

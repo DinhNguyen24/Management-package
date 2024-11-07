@@ -11,6 +11,7 @@ import { HangHoaService } from '../service/hang-hoa.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateHangHoaDto } from '../dto/create-hang-hoa-body';
 import { HangHoa } from '../model/hang-hoa.model';
+import { UpdateHangHoaDto } from '../dto/update-hang-hoa-dto';
 
 @Controller('hanghoa')
 @ApiResponse({ status: 200, type: HangHoa })
@@ -34,7 +35,7 @@ export class HangHoaController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateHangHoaDto: any) {
+  update(@Param('id') id: string, @Body() updateHangHoaDto: UpdateHangHoaDto) {
     return this.hangHoaService.updateHangHoa(id, updateHangHoaDto);
   }
 

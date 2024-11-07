@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PhieuNhapService } from './phieu-nhap.service';
 import { PhieuNhap } from './model/phieu-nhap-model';
 import { ApiTags } from '@nestjs/swagger';
+import { CreatePhieuNhapDto } from './dto/create-phieu-nhap.dto';
 @ApiTags('Phieu Nhap')
 @Controller('phieu-nhap')
 export class PhieuNhapController {
@@ -18,7 +19,9 @@ export class PhieuNhapController {
   }
 
   @Post('create')
-  async createphieuNhap(@Body() phieuNhap: PhieuNhap): Promise<PhieuNhap> {
+  async createphieuNhap(
+    @Body() phieuNhap: CreatePhieuNhapDto,
+  ): Promise<PhieuNhap> {
     return await this.phieuNhapService.createPhieuNhap(phieuNhap);
   }
 

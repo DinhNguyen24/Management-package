@@ -16,12 +16,7 @@ import { CreatePhieuXuatDto } from './dto/create-phieu-xuat.body.dto';
 export class PhieuXuatController {
   constructor(private readonly phieuXuatService: PhieuXuatService) {}
 
-  @Post()
-  async create(@Body() createPhieuXuatDto: CreatePhieuXuatDto) {
-    return this.phieuXuatService.createPhieuXuat(createPhieuXuatDto);
-  }
-
-  @Post('place')
+  @Post('create')
   @ApiResponse({ status: 200, description: 'Taọ Phiếu Xuất Thành Công.' })
   @ApiResponse({ status: 400, description: 'Không Đủ Số Lượng Để Xuất Hàng.' })
   async placeOrder(

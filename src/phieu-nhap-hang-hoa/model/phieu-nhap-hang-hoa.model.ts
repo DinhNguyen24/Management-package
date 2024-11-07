@@ -27,7 +27,7 @@ export class PhieuNhapHangHoa
 
   @ForeignKey(() => PhieuNhap)
   @Column({ type: DataType.STRING, allowNull: false })
-  maPhieuNhap: string;
+  maPhieuNhap?: string;
 
   @BelongsTo(() => PhieuNhap, {
     targetKey: 'ma',
