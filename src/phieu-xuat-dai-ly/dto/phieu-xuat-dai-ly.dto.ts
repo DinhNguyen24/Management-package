@@ -1,8 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreatePhieuXuatDaiLyDto {
   @IsString()
-  @ApiProperty({ description: 'Mã Đại Lý' })
-  maDaiLy: string;
+  @IsOptional()
+  maDaiLy?: string;
+
+  @IsString()
+  @ApiProperty({ description: 'Mã Phiếu Xuất' })
+  maPhieuXuat: string;
 }

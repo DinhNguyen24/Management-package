@@ -1,5 +1,13 @@
-import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+  ValidateNested,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { CreatePhieuXuatDaiLyDto } from 'src/phieu-xuat-dai-ly/dto/phieu-xuat-dai-ly.dto';
+import { Type } from 'class-transformer';
 
 export class CreateDaiLyDto {
   @ApiProperty({
@@ -45,4 +53,10 @@ export class CreateDaiLyDto {
   @IsOptional()
   @IsString()
   phone?: string;
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CreatePhieuXuatDaiLyDto)
+  @ApiProperty({ type: [CreatePhieuXuatDaiLyDto] })
+  danhSachPhieuXuat: CreatePhieuXuatDaiLyDto[];
 }

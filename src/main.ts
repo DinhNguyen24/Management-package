@@ -14,7 +14,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document); // Đặt đường dẫn cho Swagger UI
+  SwaggerModule.setup('api', app, document, {
+    explorer: true, // Bật thanh tìm kiếm
+  });
 
   app.enableCors({
     origin: 'http://localhost:3001',

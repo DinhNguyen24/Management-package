@@ -5,12 +5,13 @@ import {
   DataType,
   CreatedAt,
   UpdatedAt,
+  HasMany,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { CreateDaiLyDto } from '../dto/create-dai-ly.dto';
+import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
 
 @Table({ tableName: Entity.DAILY })
-export class DaiLy extends Model implements CreateDaiLyDto {
+export class DaiLy extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -48,4 +49,10 @@ export class DaiLy extends Model implements CreateDaiLyDto {
 
   @UpdatedAt
   updatedAt: Date;
+
+  @HasMany(() => PhieuXuatDaiLy, {
+    sourceKey: 'ma',
+    foreignKey: 'maDaiLy',
+  })
+  listPhieuXuatDaLy: PhieuXuatDaiLy[];
 }

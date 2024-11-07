@@ -56,4 +56,9 @@ export class DaiLyController {
   deleteDaiLy(@Param('id') id: string): Promise<void> {
     return this.daiLyService.deleteDaiLy(id);
   }
+
+  @Post('add-dai-ly/-phieu-xuat')
+  async addDaiLyToPhieuXuast(@Body() data: CreateDaiLyDto): Promise<DaiLy> {
+    return this.daiLyService.addDaiLyToPhieuXuast(data);
+  }
 }

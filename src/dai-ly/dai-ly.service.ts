@@ -4,12 +4,18 @@ import { Op } from 'sequelize';
 import { CreateDaiLyDto } from './dto/create-dai-ly.dto';
 import { DaiLy } from './model/dai-ly-model';
 import { UpdateDaiLyDto } from './dto/update-dai-ly-body';
+import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
+import { PhieuXuat } from 'src/phieu-xuat/model/phieu-xuat-model';
 
 @Injectable()
 export class DaiLyService {
   constructor(
     @InjectModel(DaiLy)
     private readonly daiLyModel: typeof DaiLy,
+    @InjectModel(PhieuXuatDaiLy)
+    private readonly phieuXuatDaiLyModel: typeof PhieuXuatDaiLy,
+    @InjectModel(PhieuXuat)
+    private readonly phieuXuatModel: typeof PhieuXuat,
   ) {}
 
   // Tìm đại lý theo tên (có chứa chuỗi tìm kiếm)
@@ -63,5 +69,39 @@ export class DaiLyService {
     }
 
     return hangHoa;
+  }
+
+  async addDaiLyToPhieuXuast(createDaiLyDto: CreateDaiLyDto): Promise<DaiLy> {
+    const { danhSachPhieuXuat } = createDaiLyDto;
+
+    // Check if all PhieuXuat exist
+    if (danhSachPhieuXuat && danhSachPhieuXuat.length > 0) {
+      for (const phieuXuat of danhSachPhieuXuat) {
+        const existingPhieuXuat = await this.phieuXuatModel.findOne({
+          where: { ma: phieuXuat.maPhieuXuat }, // Check if the PhieuXuat exists
+        });
+
+        // If the PhieuXuat does not exist, throw a NotFoundException
+        if (!existingPhieuXuat) {
+          throw new NotFoundException(
+            `Mã Phiếu Xuất : ${phieuXuat.maPhieuXuat} Không tồn tại trong csdl.`,
+          );
+        }
+      }
+    }
+
+    // Create the DaiLy (Agent)
+    const daiLy = await this.daiLyModel.create(createDaiLyDto);
+
+    // If there are associated PhieuXuatDaiLy records, create them as well
+    if (danhSachPhieuXuat && danhSachPhieuXuat.length > 0) {
+      const phieuXuatDaiLyData = danhSachPhieuXuat.map((dto) => ({
+        ...dto,
+        maDaiLy: daiLy.ma, // Assign the newly created DaiLy's ma to PhieuXuatDaiLy
+      }));
+      await this.phieuXuatDaiLyModel.bulkCreate(phieuXuatDaiLyData);
+    }
+
+    return daiLy;
   }
 }
