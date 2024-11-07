@@ -1,35 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
-import { PhieuXuat } from './model/phieu-xuat-model';
-import { HangHoaService } from 'src/hang-hoa/service/hang-hoa.service';
-import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
-import { BillXuatService } from 'src/bill-xuat/bill-xuat.service';
+import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
+import { PhieuXuatHangHoaService } from 'src/phieu-xuat-hang-hoa/phieu-xuat-hang-hoa.service';
 import { CreatePhieuXuatDto } from './dto/create-phieu-xuat.body.dto';
+import { PhieuXuat } from './model/phieu-xuat-model';
 
 @Injectable()
 export class PhieuXuatService {
   constructor(
     @InjectModel(PhieuXuat)
-    private readonly phieuXuatModel: typeof PhieuXuat,
-    @InjectModel(BillXuat)
-    private readonly billXuatModel: typeof BillXuat,
-    private readonly hangHoaSerVice: HangHoaService,
-    @InjectModel(HangHoa)
-    private readonly hangHoaModel: typeof HangHoa,
-    private readonly billXuatService: BillXuatService,
+    private phieuXuatRepository: typeof PhieuXuat,
+    @InjectModel(PhieuXuatDaiLy)
+    private phieuXuatDaiLyRepository: typeof PhieuXuatDaiLy,
+    private readonly phieuXuatHangHoaService: PhieuXuatHangHoaService,
   ) {}
 
-  async submitPhieuXuat(maPhieuXuat: string) {
-    const billItems = await BillXuat.findAll({ where: { maPhieuXuat } });
-    const totalAmount = billItems.reduce(
-      (sum, item) => sum + item.totalPrice,
-      0,
-    );
-
-    return PhieuXuat.update({ totalAmount }, { where: { maPhieuXuat } });
-  }
-  async create(dto: CreatePhieuXuatDto) {
-    return await this.phieuXuatModel.create(dto);
+  async createPhieuXuat(
+    createPhieuXuatDto: CreatePhieuXuatDto,
+  ): Promise<PhieuXuat> {
+    return await this.phieuXuatRepository.create(createPhieuXuatDto);
   }
 }

@@ -22,7 +22,7 @@ export class BillNhap extends Model implements CreateBillNhaptDto {
   id: string;
 
   @ForeignKey(() => PhieuNhap)
-  @Column({ type: DataType.UUID, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   maPhieuNhap: string;
 
   @BelongsTo(() => PhieuNhap, {

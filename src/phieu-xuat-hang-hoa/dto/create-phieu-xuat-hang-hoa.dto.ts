@@ -1,22 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
-import { CreateHangHoaDto } from 'src/hang-hoa/dto/create-hang-hoa-body';
+import { IsString } from 'class-validator';
 
 export class CreatePhieuXuatHangHoaDto {
-  @ApiProperty({
-    description: 'Mã Phiếu Xuất',
-  })
   @IsString()
-  @IsOptional()
-  maPhieuXuat: string;
-
-  @ApiProperty({
-    description: 'Mã Hàng Hóa',
-  })
-  @IsString()
-  @IsOptional()
+  @ApiProperty({ description: 'Mã Hàng Hóa' })
   maHangHoa: string;
 
-  @IsOptional()
-  hangHoaList?: CreateHangHoaDto;
+  @IsString()
+  @ApiProperty({ description: 'Mã Phiếu Xuất' })
+  maPhieuXuat: string;
 }

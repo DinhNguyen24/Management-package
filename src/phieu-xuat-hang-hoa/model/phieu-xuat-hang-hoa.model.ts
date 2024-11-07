@@ -2,22 +2,18 @@ import {
   Table,
   Column,
   Model,
-  ForeignKey,
   DataType,
   BelongsTo,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Entity } from 'src/common/constants';
-import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
-import { PhieuXuat } from 'src/phieu-xuat/model/phieu-xuat-model';
-import { CreatePhieuXuatHangHoaDto } from '../dto/create-phieu-xuat-hang-hoa.dto';
 import { CreateHangHoaDto } from 'src/hang-hoa/dto/create-hang-hoa-body';
+import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
 import { CreatePhieuXuatDto } from 'src/phieu-xuat/dto/create-phieu-xuat.body.dto';
+import { PhieuXuat } from 'src/phieu-xuat/model/phieu-xuat-model';
 
 @Table({ tableName: Entity.PHIEUXUATHANGHOA })
-export class PhieuXuatHangHoa
-  extends Model
-  implements CreatePhieuXuatHangHoaDto
-{
+export class PhieuXuatHangHoa extends Model {
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -26,7 +22,7 @@ export class PhieuXuatHangHoa
   id: string;
 
   @ForeignKey(() => PhieuXuat)
-  @Column({ type: DataType.UUID, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   maPhieuXuat: string;
 
   @BelongsTo(() => PhieuXuat, {

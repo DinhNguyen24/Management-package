@@ -21,6 +21,7 @@ export class NhaCungCap extends Model implements CreateNhaCungCapDto {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    unique: true,
   })
   ma: string;
 

@@ -19,4 +19,10 @@ export class CreatePhieuNhapNhaCungCapDto {
 
   @IsOptional()
   nhaCungCapList?: CreateNhaCungCapDto;
+
+  @IsOptional()
+  @ApiProperty({
+    description: 'Mã',
+  })
+  ma: string;
 }

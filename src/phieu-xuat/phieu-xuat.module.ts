@@ -1,27 +1,17 @@
-import { Module, forwardRef } from '@nestjs/common';
-import { PhieuXuatController } from './phieu-xuat.controller';
-import { PhieuXuatService } from './phieu-xuat.service';
-import { PhieuXuat } from './model/phieu-xuat-model';
+import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { HangHoaModule } from 'src/hang-hoa/hang-hoa.module';
-import { BillXuatModule } from 'src/bill-xuat/bill-xuat.module';
-import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
-import { BillXuat } from 'src/bill-xuat/model/bill-xuat-model';
-import { DaiLyModule } from 'src/dai-ly/dai-ly.module';
-import { DaiLy } from 'src/dai-ly/model/dai-ly-model';
+import { PhieuXuatService } from './phieu-xuat.service';
+import { PhieuXuatController } from './phieu-xuat.controller';
+import { PhieuXuatDaiLy } from 'src/phieu-xuat-dai-ly/model/phieu-xuat-dai-ly.model';
+import { PhieuXuatHangHoa } from 'src/phieu-xuat-hang-hoa/model/phieu-xuat-hang-hoa.model';
+import { PhieuXuatHangHoaService } from 'src/phieu-xuat-hang-hoa/phieu-xuat-hang-hoa.service';
+import { PhieuXuat } from './model/phieu-xuat-model';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([PhieuXuat]),
-    SequelizeModule.forFeature([HangHoa]),
-    SequelizeModule.forFeature([BillXuat]),
-    SequelizeModule.forFeature([DaiLy]),
-    HangHoaModule,
-    DaiLyModule,
-    forwardRef(() => BillXuatModule),
+    SequelizeModule.forFeature([PhieuXuat, PhieuXuatDaiLy, PhieuXuatHangHoa]),
   ],
   controllers: [PhieuXuatController],
-  providers: [PhieuXuatService],
-  exports: [PhieuXuatService],
+  providers: [PhieuXuatService, PhieuXuatHangHoaService],
 })
 export class PhieuXuatModule {}

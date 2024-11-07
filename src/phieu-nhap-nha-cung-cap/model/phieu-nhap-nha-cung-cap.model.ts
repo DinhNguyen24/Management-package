@@ -27,7 +27,7 @@ export class PhieuNhapNhaCungCap
   id: string;
 
   @ForeignKey(() => PhieuNhap)
-  @Column({ type: DataType.UUID, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   maPhieuNhap: string;
 
   @BelongsTo(() => PhieuNhap, {
@@ -45,4 +45,7 @@ export class PhieuNhapNhaCungCap
     foreignKey: 'maNhaCungCap',
   })
   nhaCungCapList?: CreateNhaCungCapDto;
+
+  @Column({})
+  ma: string;
 }

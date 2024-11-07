@@ -26,7 +26,7 @@ export class PhieuNhapHangHoa
   id: string;
 
   @ForeignKey(() => PhieuNhap)
-  @Column({ type: DataType.UUID, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: false })
   maPhieuNhap: string;
 
   @BelongsTo(() => PhieuNhap, {
