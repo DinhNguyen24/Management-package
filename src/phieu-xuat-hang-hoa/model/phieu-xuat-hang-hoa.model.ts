@@ -48,3 +48,4 @@ export class PhieuXuatHangHoa extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   soLuong: number;
 }
+//
