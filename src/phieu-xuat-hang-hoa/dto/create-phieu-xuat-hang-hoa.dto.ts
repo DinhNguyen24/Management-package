@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreatePhieuXuatHangHoaDto {
   @IsString()
@@ -7,8 +7,8 @@ export class CreatePhieuXuatHangHoaDto {
   maHangHoa: string;
 
   @IsString()
-  @ApiProperty({ description: 'Mã Phiếu Xuất', required: true })
-  maPhieuXuat: string;
+  @IsOptional()
+  maPhieuXuat?: string;
 
   @IsString()
   @ApiProperty({ description: 'Số Lượng', required: true })

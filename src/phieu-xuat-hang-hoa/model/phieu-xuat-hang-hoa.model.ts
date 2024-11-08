@@ -37,7 +37,7 @@ export class PhieuXuatHangHoa extends Model {
 
   @ForeignKey(() => HangHoa)
   @Column({ type: DataType.STRING, allowNull: false })
-  maHangHoa: string;
+  maHangHoa?: string;
 
   @BelongsTo(() => HangHoa, {
     targetKey: 'ma',

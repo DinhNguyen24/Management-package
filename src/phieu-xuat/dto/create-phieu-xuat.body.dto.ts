@@ -18,8 +18,7 @@ export class CreatePhieuXuatDto {
 
   @IsNumber()
   @ApiProperty({
-    description: 'Total amount of the Phieu Xuat',
-    required: true,
+    description: 'Tổng Tiền Của Phiếu Xuất',
   })
   totalAmount: number;
 

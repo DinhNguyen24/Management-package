@@ -3,11 +3,10 @@ import { IsNotEmpty, IsOptional, IsNumber, IsString } from 'class-validator';
 
 export class CreateHangHoaDto {
   @ApiProperty({
-    description: 'Unique ide5ntifier for the item',
+    description: 'Unique for the item',
     example: 'HTML',
     required: false,
   })
-  @ApiProperty({ description: 'Item code', example: 'HHH', required: true })
   @IsNotEmpty()
   @IsString()
   ma: string;

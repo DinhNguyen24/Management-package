@@ -44,11 +44,11 @@ export class BillXuatService {
       totalPrice,
     });
 
-    // Bước 5: Giảm số lượng hàng hóa sau khi tạo Bill Xuất
-    await this.hangHoaService.updateHangHoa(
-      hangHoa.ma,
-      hangHoa.soLuong - quantity,
-    );
+    // // Bước 5: Giảm số lượng hàng hóa sau khi tạo Bill Xuất
+    // await this.hangHoaService.updateHangHoa(
+    //   hangHoa.ma,
+    //   hangHoa.soLuong - quantity,
+    // );
 
     return newBillXuat;
   }

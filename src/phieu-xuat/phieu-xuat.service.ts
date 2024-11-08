@@ -26,7 +26,7 @@ export class PhieuXuatService {
       });
       if (!hangHoa || hangHoa.soLuong < item.soLuong) {
         throw new BadRequestException(
-          `Insufficient stock for item: ${item.maHangHoa}`,
+          `Không đủ số lượng để xuất với mã: ${item.maHangHoa}`,
         );
       }
     }
@@ -68,11 +68,6 @@ export class PhieuXuatService {
     await phieuXuat.update({ maDaiLy });
 
     return phieuXuat.ma;
-  }
-  async createPhieuXuat(
-    createPhieuXuatDto: CreatePhieuXuatDto,
-  ): Promise<PhieuXuat> {
-    return await this.phieuXuatModel.create(createPhieuXuatDto);
   }
 
   async findAll(): Promise<PhieuXuat[]> {

@@ -1,6 +1,5 @@
-import { Controller, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { PhieuXuatHangHoaService } from './phieu-xuat-hang-hoa.service';
-import { CreatePhieuXuatHangHoaDto } from './dto/create-phieu-xuat-hang-hoa.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { PhieuXuatHangHoa } from './model/phieu-xuat-hang-hoa.model';
 
@@ -11,16 +10,10 @@ export class PhieuXuatHangHoaController {
     private readonly phieuXuatHangHoaService: PhieuXuatHangHoaService,
   ) {}
 
-  @Post(':phieuXuatId')
-  @ApiOperation({ summary: 'Tạo mới hàng hóa cho phiếu xuất' })
+  @Get('get-du-lieu')
+  @ApiOperation({ summary: 'Lấy Dữ liệu Hàng Hóa hàng hóa cho phiếu xuất' })
   @ApiResponse({ status: 201, type: PhieuXuatHangHoa })
-  async createHangHoa(
-    @Param('phieuXuatId') phieuXuatId: string,
-    @Body() createPhieuXuatHangHoaDto: CreatePhieuXuatHangHoaDto,
-  ) {
-    return this.phieuXuatHangHoaService.createHangHoa(
-      createPhieuXuatHangHoaDto,
-      phieuXuatId,
-    );
+  findOne() {
+    return this.phieuXuatHangHoaService.findAll();
   }
 }
