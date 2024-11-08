@@ -12,38 +12,37 @@ import { DaiLyService } from './dai-ly.service';
 import { CreateDaiLyDto } from './dto/create-dai-ly.dto';
 import { DaiLy } from './model/dai-ly-model';
 import { UpdateDaiLyDto } from './dto/update-dai-ly-body';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('Dai Ly')
 @Controller('daily')
 export class DaiLyController {
   constructor(private readonly daiLyService: DaiLyService) {}
 
-  // API: Tìm đại lý theo tên
   @Get('search')
+  @ApiOperation({ summary: 'Tìm kiếm đại lý theo tên' })
   searchDaiLy(@Query('ten') ten: string): Promise<DaiLy[]> {
     return this.daiLyService.searchDaiLy(ten);
   }
 
-  // API: Lấy đại lý theo id
   @Get(':id')
   findDaiLyById(@Param('id') id: string): Promise<DaiLy> {
     return this.daiLyService.findById(id);
   }
 
-  // API: Lấy danh sách tất cả các đại lý
   @Get()
+  @ApiOperation({ summary: 'Get dữ liệu danh sách đại lý' })
   findAllDaiLy(): Promise<DaiLy[]> {
     return this.daiLyService.findAll();
   }
 
-  // API: Thêm mới đại lý
   @Post()
+  @ApiOperation({ summary: 'Tạo Đại Lý' })
   createDaiLy(@Body() createDaiLyDto: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.createDaiLy(createDaiLyDto);
   }
 
-  // API: Cập nhật đại lý theo id
   @Put(':id')
+  @ApiOperation({ summary: 'Cập nhật thông tin đại lý' })
   updateDaiLy(
     @Param('id') id: string,
     @Body() updateDaiLyDto: UpdateDaiLyDto,
@@ -51,13 +50,14 @@ export class DaiLyController {
     return this.daiLyService.updateDaiLy(id, updateDaiLyDto);
   }
 
-  // API: Xóa đại lý theo id
   @Delete(':id')
+  @ApiOperation({ summary: 'Hủy tạo đại lý' })
   deleteDaiLy(@Param('id') id: string): Promise<void> {
     return this.daiLyService.deleteDaiLy(id);
   }
 
   @Post('add-dai-ly/-phieu-xuat')
+  @ApiOperation({ summary: 'Tạo đại lý' })
   async addDaiLyToPhieuXuast(@Body() data: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.addDaiLyToPhieuXuast(data);
   }
