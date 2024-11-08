@@ -33,7 +33,7 @@ export class HangHoaController {
     return this.hangHoaService.findOne(id);
   }
 
-  @Put(':id')
+  @Put('/update/:id')
   update(@Param('id') id: string, @Body() updateHangHoaDto: any) {
     return this.hangHoaService.updateHangHoa(id, updateHangHoaDto);
   }

@@ -20,7 +20,7 @@ export class NhaCungCapController {
   constructor(private readonly nhaCungCapService: NhaCungCapService) {}
 
   // Thêm mới nhà cung cấp
-  @Post()
+  @Post('/create')
   async create(
     @Body() createNhaCungCapDto: CreateNhaCungCapDto,
   ): Promise<NhaCungCap> {

@@ -37,13 +37,13 @@ export class DaiLyController {
   }
 
   // API: Thêm mới đại lý
-  @Post()
+  @Post('/create')
   createDaiLy(@Body() createDaiLyDto: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.createDaiLy(createDaiLyDto);
   }
 
   // API: Cập nhật đại lý theo id
-  @Put(':id')
+  @Put('/edit/:id')
   updateDaiLy(
     @Param('id') id: string,
     @Body() updateDaiLyDto: UpdateDaiLyDto,
