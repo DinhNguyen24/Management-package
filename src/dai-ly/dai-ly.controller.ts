@@ -25,7 +25,7 @@ export class DaiLyController {
   }
 
   // API: Lấy đại lý theo id
-  @Get(':id')
+  @Get('/get-by-id/:id')
   findDaiLyById(@Param('id') id: string): Promise<DaiLy> {
     return this.daiLyService.findById(id);
   }
