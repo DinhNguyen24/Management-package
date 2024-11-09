@@ -30,6 +30,13 @@ export class DaiLyController {
     return this.daiLyService.findById(id);
   }
 
+  // API: Lấy đại lý theo mã
+  @Get('/get-by-ma/:ma')
+  @ApiOperation({ summary: 'Tìm Kiếm Thông Tin Đại Lý Theo Mã' })
+  findDaiLyByMa(@Param('ma') ma: string): Promise<DaiLy> {
+    return this.daiLyService.findByMa(ma);
+  }
+
   @Get()
   @ApiOperation({ summary: 'Get dữ liệu danh sách đại lý' })
   findAllDaiLy(): Promise<DaiLy[]> {

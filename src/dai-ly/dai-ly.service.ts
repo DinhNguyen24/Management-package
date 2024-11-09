@@ -30,6 +30,18 @@ export class DaiLyService {
     return this.daiLyModel.findOne({ where: { id } });
   }
 
+  async findByMa(ma: string): Promise<DaiLy> {
+    const daiLy = await this.daiLyModel.findOne({
+      where: { ma },
+    });
+
+    if (!daiLy) {
+      throw new NotFoundException(`Không tìm thấy đại lý với mã ${ma}`);
+    }
+
+    return daiLy;
+  }
+
   // Lấy danh sách tất cả các đại lý
   async findAll(): Promise<DaiLy[]> {
     return this.daiLyModel.findAll();
