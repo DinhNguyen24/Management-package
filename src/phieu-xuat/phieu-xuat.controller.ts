@@ -45,4 +45,10 @@ export class PhieuXuatController {
   remove(@Param('id') id: string) {
     return this.phieuXuatService.deletePhieuXuat(id);
   }
+
+  @Get('find/:ma')
+  @ApiOperation({ summary: 'Tìm Kiếm Thông Tin Phiếu Xuất Theo Mã' })
+  async findPhieuXuatByMa(@Param('ma') ma: string): Promise<PhieuXuat> {
+    return this.phieuXuatService.findPhieuXuatByMa(ma);
+  }
 }
