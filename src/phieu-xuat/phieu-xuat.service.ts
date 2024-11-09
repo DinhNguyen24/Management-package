@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { HangHoa } from 'src/hang-hoa/model/hang-hoa.model';
 import { PhieuXuatHangHoa } from 'src/phieu-xuat-hang-hoa/model/phieu-xuat-hang-hoa.model';
@@ -77,5 +81,17 @@ export class PhieuXuatService {
   async deletePhieuXuat(id: string): Promise<void> {
     const PhieuXuat = await this.phieuXuatModel.findByPk(id);
     await PhieuXuat.destroy();
+  }
+
+  async findPhieuXuatByMa(ma: string): Promise<PhieuXuat> {
+    const phieuXuat = await this.phieuXuatModel.findOne({
+      where: { ma },
+    });
+
+    if (!phieuXuat) {
+      throw new NotFoundException(`Không tìm thấy phiếu xuất với mã ${ma}`);
+    }
+
+    return phieuXuat;
   }
 }
