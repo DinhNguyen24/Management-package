@@ -19,7 +19,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 export class NhaCungCapController {
   constructor(private readonly nhaCungCapService: NhaCungCapService) {}
 
-  @Post('create')
+  @Post('/create')
   @ApiOperation({ summary: 'Tạo nhà cung cấp' })
   async create(
     @Body() createNhaCungCapDto: CreateNhaCungCapDto,
