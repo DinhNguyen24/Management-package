@@ -38,6 +38,7 @@ export class HangHoaController {
   }
 
   @Put('/update/:ma')
+  @ApiOperation({ summary: 'Cập Nhật Danh Thông Tin  Hàng Hóa' })
   update(@Param('ma') ma: string, @Body() updateHangHoaDto: UpdateHangHoaDto) {
     return this.hangHoaService.updateHangHoa(ma, updateHangHoaDto);
   }

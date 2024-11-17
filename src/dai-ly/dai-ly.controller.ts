@@ -24,17 +24,9 @@ export class DaiLyController {
     return this.daiLyService.searchDaiLy(ten);
   }
 
-  // API: Lấy đại lý theo id
   @Get('/get-by-id/:id')
   findDaiLyById(@Param('id') id: string): Promise<DaiLy> {
     return this.daiLyService.findById(id);
-  }
-
-  // API: Lấy đại lý theo mã
-  @Get('/get-by-ma/:ma')
-  @ApiOperation({ summary: 'Tìm Kiếm Thông Tin Đại Lý Theo Mã' })
-  findDaiLyByMa(@Param('ma') ma: string): Promise<DaiLy> {
-    return this.daiLyService.findByMa(ma);
   }
 
   @Get()
@@ -43,14 +35,14 @@ export class DaiLyController {
     return this.daiLyService.findAll();
   }
 
-  // API: Thêm mới đại lý
-  @Post('/create')
+  @Post()
+  @ApiOperation({ summary: 'Tạo Đại Lý' })
   createDaiLy(@Body() createDaiLyDto: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.createDaiLy(createDaiLyDto);
   }
 
-  // API: Cập nhật đại lý theo id
   @Put('/edit/:id')
+  @ApiOperation({ summary: 'Cập nhật thông tin đại lý' })
   updateDaiLy(
     @Param('id') id: string,
     @Body() updateDaiLyDto: UpdateDaiLyDto,
@@ -68,5 +60,12 @@ export class DaiLyController {
   @ApiOperation({ summary: 'Tạo đại lý' })
   async addDaiLyToPhieuXuast(@Body() data: CreateDaiLyDto): Promise<DaiLy> {
     return this.daiLyService.addDaiLyToPhieuXuast(data);
+  }
+
+  // API: Lấy đại lý theo mã
+  @Get('/get-by-ma/:ma')
+  @ApiOperation({ summary: 'Tìm Kiếm Thông Tin Đại Lý Theo Mã' })
+  findDaiLyByMa(@Param('ma') ma: string): Promise<DaiLy> {
+    return this.daiLyService.findByMa(ma);
   }
 }
