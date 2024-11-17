@@ -47,5 +47,8 @@ export class PhieuXuatHangHoa extends Model {
 
   @Column({ type: DataType.STRING, allowNull: false })
   soLuong: number;
+
+  @Column({ type: DataType.FLOAT, allowNull: false }) // Giá nhập
+  giaNhap: number;
 }
 //

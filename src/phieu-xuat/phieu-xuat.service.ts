@@ -51,16 +51,19 @@ export class PhieuXuatService {
       hangHoa.soLuong -= item.soLuong;
       await hangHoa.save();
 
+      const amount = item.giaNhap * item.soLuong;
+
       // Create a record in the PhieuXuatHangHoa table
       await this.phieuXuatHangHoaModel.create({
         maPhieuXuat: phieuXuat.ma,
         maHangHoa: item.maHangHoa,
         soLuong: item.soLuong,
+        giaNhap: item.giaNhap || 0,
         // Add any additional relevant information here
       });
 
       // Update total amount
-      totalAmount += hangHoa.giaNhap * item.soLuong;
+      totalAmount += amount;
     }
 
     // Step 3: Update the total amount of the receipt

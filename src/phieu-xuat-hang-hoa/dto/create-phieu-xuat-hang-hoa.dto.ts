@@ -13,4 +13,8 @@ export class CreatePhieuXuatHangHoaDto {
   @IsString()
   @ApiProperty({ description: 'Số Lượng', required: true })
   soLuong?: number;
+
+  @IsString()
+  @ApiProperty({ description: 'Giá Nhập', required: true })
+  giaNhap: number; // Thêm trường giaNhap
 }
